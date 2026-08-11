@@ -1,0 +1,139 @@
+{
+  "questions": [
+    {
+      "id": "Q1",
+      "category": "single_doc",
+      "question": "What is the current sick leave allowance for employees?",
+      "relevant_docs": ["leave_policy_v2.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "12 days of paid sick leave per calendar year.",
+      "notes": "Straightforward lookup from the current (newer) policy doc."
+    },
+    {
+      "id": "Q2",
+      "category": "single_doc",
+      "question": "How many days per week can an employee work from home once approved for WFH?",
+      "relevant_docs": ["wfh_policy.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "Up to 2 days per week; full-time WFH (5 days) requires exceptional approval.",
+      "notes": "Single document, direct fact."
+    },
+    {
+      "id": "Q3",
+      "category": "single_doc",
+      "question": "What is the current hotel accommodation reimbursement limit per night?",
+      "relevant_docs": ["expense_reimbursement_v2.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "\u20b94,500 per night (current policy, effective Feb 2024).",
+      "notes": "Tests whether retriever correctly picks the current (v2), not the superseded v1."
+    },
+    {
+      "id": "Q4",
+      "category": "single_doc",
+      "question": "What is the standard notice period for an employee who resigns voluntarily?",
+      "relevant_docs": ["exit_offboarding_policy.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "60 days from the date of resignation.",
+      "notes": "Tests whether the system pulls from exit_offboarding_policy.md and not the near-miss code_of_conduct.md notice-period mention."
+    },
+    {
+      "id": "Q5",
+      "category": "single_doc",
+      "question": "How many times a year are performance reviews conducted?",
+      "relevant_docs": ["performance_review_policy.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "Twice a year \u2014 an H1 review (Jan\u2013Jun, conducted in July) and an H2 review (Jul\u2013Dec, conducted in January).",
+      "notes": "Single clean document, no flaws attached."
+    },
+    {
+      "id": "Q6",
+      "category": "single_doc",
+      "question": "Which cities fall under Zone A for full-remote hiring?",
+      "relevant_docs": ["remote_work_zones.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "Pune, Bengaluru, and Hyderabad.",
+      "notes": "Tests retrieval doesn't get confused with wfh_policy.md despite both mentioning 'remote'."
+    },
+    {
+      "id": "Q7",
+      "category": "multi_hop",
+      "question": "By how much did the hotel accommodation reimbursement limit increase between the old and new expense policy?",
+      "relevant_docs": ["expense_reimbursement_v1.md", "expense_reimbursement_v2.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "It increased by \u20b91,500 \u2014 from \u20b93,000/night (v1, 2022) to \u20b94,500/night (v2, 2024).",
+      "notes": "Requires retrieving and subtracting values from two documents."
+    },
+    {
+      "id": "Q8",
+      "category": "multi_hop",
+      "question": "If someone just completed their 3-month probation, are they immediately eligible to apply for WFH?",
+      "relevant_docs": ["probation_policy.md", "wfh_policy.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "No. Probation (probation_policy.md) is 3 months, but WFH eligibility (wfh_policy.md) requires at least 6 months of continuous employment, so they would not yet qualify.",
+      "notes": "Genuine multi-hop reasoning across two unrelated policies \u2014 requires combining two numeric thresholds, not just retrieval."
+    },
+    {
+      "id": "Q9",
+      "category": "multi_hop",
+      "question": "Does an employee terminated for misconduct still get the standard resignation notice period?",
+      "relevant_docs": ["exit_offboarding_policy.md", "code_of_conduct.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "No. The standard 60-day notice period (exit_offboarding_policy.md) applies to voluntary resignation. For misconduct-related termination, code_of_conduct.md states the notice period may be waived entirely and the employee relieved with immediate effect after due process.",
+      "notes": "Tests whether the system correctly distinguishes two different 'notice period' contexts across two docs instead of conflating them (near-miss risk)."
+    },
+    {
+      "id": "Q10",
+      "category": "multi_hop",
+      "question": "Summarise what changed in the leave policy between 2023 and 2024.",
+      "relevant_docs": ["leave_policy_v1.md", "leave_policy_v2.md"],
+      "expected_behavior": "answer",
+      "expected_answer": "Sick leave increased from 10 days (Jan 2023 policy) to 12 days (Mar 2024 revision). Casual leave (8 days) and earned leave (1.5 days/month, capped at 18/year) remained unchanged.",
+      "notes": "Requires comparing both versions and identifying what did and didn't change \u2014 tests 'admitting what we don't know changed' as well."
+    },
+    {
+      "id": "Q11",
+      "category": "unanswerable",
+      "question": "How many days of paternity leave does an employee get?",
+      "relevant_docs": [],
+      "expected_behavior": "refuse",
+      "expected_answer": "Not specified in any document \u2014 correct answer is an honest refusal/gap acknowledgment, not a guess.",
+      "notes": "Planted gap. Tests abstention behavior."
+    },
+    {
+      "id": "Q12",
+      "category": "unanswerable",
+      "question": "How many total employees does NimbusWorks currently have?",
+      "relevant_docs": [],
+      "expected_behavior": "refuse",
+      "expected_answer": "Not specified in any document \u2014 correct answer is an honest refusal/gap acknowledgment.",
+      "notes": "Planted gap. Mirrors the spec's own example question."
+    },
+    {
+      "id": "Q13",
+      "category": "unanswerable",
+      "question": "If a probation period is extended, what notice period is required to terminate employment during the extension?",
+      "relevant_docs": [],
+      "expected_behavior": "refuse",
+      "expected_answer": "Not specified \u2014 probation_policy.md covers termination notice during standard probation (15 days) but is silent on the extension scenario specifically.",
+      "notes": "Subtler gap \u2014 tests whether the system notices a scoped silence rather than assuming the standard probation notice extends to this case."
+    },
+    {
+      "id": "Q14",
+      "category": "contradictory",
+      "question": "How many days of sick leave do employees get \u2014 has this changed recently?",
+      "relevant_docs": ["leave_policy_v1.md", "leave_policy_v2.md"],
+      "expected_behavior": "surface_conflict",
+      "expected_answer": "leave_policy_v1.md (Jan 2023) states 10 days; leave_policy_v2.md (Mar 2024, newer) states 12 days. Correct answer reports both and states the current figure is 12 days per the newer document \u2014 not silently the newer number with no mention of the change.",
+      "notes": "Tests hard requirement #6: conflicts must be reported, not silently resolved, even when recency makes the resolution fairly clear."
+    },
+    {
+      "id": "Q15",
+      "category": "contradictory",
+      "question": "What is the standard probation period length?",
+      "relevant_docs": ["probation_policy.md", "onboarding_checklist.md"],
+      "expected_behavior": "surface_conflict",
+      "expected_answer": "probation_policy.md (Mar 2023) states 3 months; onboarding_checklist.md (May 2023, slightly newer) states 6 months. Unlike Q14, recency does not cleanly resolve this \u2014 the correct answer must surface both figures as an unresolved conflict rather than confidently picking one.",
+      "notes": "This is the hardest conflict case \u2014 a naive 'newest doc wins' heuristic would silently and incorrectly pick 6 months. Tests genuine conflict-surfacing, not just recency heuristics."
+    }
+  ]
+}
