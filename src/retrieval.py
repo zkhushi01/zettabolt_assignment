@@ -39,9 +39,9 @@ load_dotenv()
 # ---- Config ----
 DOCS_DIR = os.path.join(os.path.dirname(__file__), "..", "docs")
 CHROMA_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
-COLLECTION_NAME = "research_desk_kb_bge_base_en_v15"  # model-specific: dims differ from the old MiniLM collection
-CHUNK_SIZE = 400        # words per chunk
-CHUNK_OVERLAP = 50      # words overlapping between chunks
+COLLECTION_NAME = "research_desk_kb_bge_base_en_v15_headerchunked"  # chunking scheme changed -- new collection so stale fixed-size chunks in the old one are never mixed in
+CHUNK_SIZE = 150        # fallback word-count cap, only used if a single section is unexpectedly large
+CHUNK_OVERLAP = 30      # words overlapping between fallback chunks
 
 # Meta-documentation about the knowledge base itself, not knowledge-base
 # content -- indexing these would let retrieval directly surface the planted
@@ -162,16 +162,54 @@ def _ensure_bm25_index():
         _rebuild_bm25_index()
 
 
-def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
-    """Fixed-size word chunking with overlap."""
+_HEADER_RE = re.compile(r"^#{2,3}\s+.*$", re.MULTILINE)
+
+
+def _fixed_size_chunks(text: str, chunk_size: int, overlap: int) -> list[str]:
+    """Word-window fallback, only reached when a single header section is
+    still too large to act as one chunk on its own."""
     words = text.split()
     chunks = []
-    start = 0 
+    start = 0
     while start < len(words):
         end = start + chunk_size
-        chunk = " ".join(words[start:end])
-        chunks.append(chunk)
+        chunks.append(" ".join(words[start:end]))
         start += chunk_size - overlap  # move forward with overlap
+    return chunks
+
+
+def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
+    """
+    Splits on markdown ## / ### headers so each chunk is one self-contained
+    policy sub-topic (e.g. "### 2.1 Sick Leave") instead of a fixed word
+    window that has no idea where one topic ends and the next begins. The
+    docs in docs/ are written specifically with clean, short sections, so
+    this produces focused, on-topic chunks instead of dumping an entire
+    document as a single "chunk" -- which is what a 400-word fixed window
+    did on every doc here, since none of them exceeded ~400 words.
+    Falls back to fixed-size word chunking only for the rare section that's
+    still too large on its own (or a doc with no ##/### headers at all).
+    """
+    header_starts = [m.start() for m in _HEADER_RE.finditer(text)]
+    if not header_starts:
+        return _fixed_size_chunks(text, chunk_size, overlap)
+
+    sections = []
+    if header_starts[0] > 0:
+        preamble = text[: header_starts[0]].strip()
+        if preamble:
+            sections.append(preamble)
+    for start, end in zip(header_starts, header_starts[1:] + [len(text)]):
+        section = text[start:end].strip()
+        if section:
+            sections.append(section)
+
+    chunks = []
+    for section in sections:
+        if len(section.split()) <= chunk_size:
+            chunks.append(section)
+        else:
+            chunks.extend(_fixed_size_chunks(section, chunk_size, overlap))
     return chunks
 
 
