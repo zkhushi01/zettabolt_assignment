@@ -1,7 +1,7 @@
 langchain>=0.3.0
 langgraph>=0.2.0
 pydantic>=2.7.0
-langchain-openai>=0.2.0    #  model provider
+langchain-google-genai>=2.0.0  # Gemini model provider (agent graph)
 chromadb>=0.5.0              # vector store
 python-dotenv>=1.0.0
 huggingface_hub>=0.24.0       # BGE embeddings via HF Inference API

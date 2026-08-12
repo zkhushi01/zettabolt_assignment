@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"backend\\(8001\\): %{http_code}\\\\n\" http://127.0.0.1:8001/api/topology)",
+      "Bash(curl -s -o /dev/null -w \"graph_ui frontend\\(5174\\): %{http_code}\\\\n\" http://localhost:5174/)",
+      "Bash(curl -sv http://127.0.0.1:8001/api/topology)"
+    ]
+  }
+}
