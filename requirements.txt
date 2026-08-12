@@ -1,6 +1,16 @@
 langchain>=0.3.0
 langgraph>=0.2.0
 pydantic>=2.7.0
-langchain-openai>=0.2.0    #  model provider 
+langchain-openai>=0.2.0    #  model provider
 chromadb>=0.5.0              # vector store
 python-dotenv>=1.0.0
+huggingface_hub>=0.24.0       # BGE embeddings via HF Inference API
+rank_bm25>=0.2.2              # lexical half of hybrid retrieval
+fastapi>=0.115.0               # backend for the retrieval test UI
+
+
+
+
+
+
+
