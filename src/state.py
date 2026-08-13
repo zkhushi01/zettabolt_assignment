@@ -36,8 +36,12 @@ class Claim(BaseModel):
     sub_question_id: str
     citations: list[str]  # doc_id/chunk_id references
     confidence: float
-    # Set by the Verifier node (not built yet) -- None until then.
+    # Both set together by the Verifier node -- None until then, and again
+    # None on a freshly re-synthesised claim after a retry (see Router: it
+    # strips old claims for the sub-questions being redone, so a new claim
+    # naturally starts unverified rather than inheriting a stale verdict).
     verification_status: Optional[VerificationLabel] = None
+    verification_reason: Optional[str] = None
 
 
 class ConflictRecord(BaseModel):
@@ -90,6 +94,37 @@ class SynthesiserOutput(BaseModel):
     claims: list[SynthesisedClaim] = Field(default_factory=list)
 
 
+# One LLM call for the whole claim set (see src/verifier.py) so the model can
+# cross-check sibling claims for the same sub-question against each other
+# (needed to detect CONFLICTING_SOURCES, which is a property of two claims
+# disagreeing, not of one claim against its own citation) -- not a per-claim
+# call, which would make that cross-check impossible.
+class ClaimVerdict(BaseModel):
+    claim_id: str
+    label: VerificationLabel
+    reason: str
+
+
+class VerifierOutput(BaseModel):
+    verdicts: list[ClaimVerdict] = Field(default_factory=list)
+
+
+# Researcher's retry-only query rewrite (src/researcher.py) -- only invoked
+# for sub-questions the Verifier flagged UNSUPPORTED, so retrying changes the
+# actual search instead of re-running the identical query for identical
+# (already-known-bad) results.
+class ReformulatedQuery(BaseModel):
+    query: str
+
+
+# Finaliser's only LLM call: rephrase already-verified claims into prose.
+# Deliberately just one field -- confidence is computed in code from the
+# claims/conflicts/gaps Finaliser already has (see src/finaliser.py), not
+# asked of the model, since that's arithmetic over known data, not judgment.
+class FinaliserOutput(BaseModel):
+    answer: str
+
+
 # ---- Top-level state ----
 # Pydantic model (not a bare dict / TypedDict) so every node's input and
 # output is validated at the boundary -- a node returning a malformed update
@@ -134,6 +169,12 @@ class AgentState(BaseModel):
     retry_count: int = 0
     max_retries: int = 2
     router_decision: Optional[RouterDecision] = None
+    # Sub-question ids the Router flagged UNSUPPORTED and sent back for a
+    # re-search with a reformulated query (src/researcher.py reads this to
+    # know which sub-questions to redo, vs. running all of them fresh).
+    # Empty on the first pass and on a REWRITE_ANSWER decision (no
+    # re-retrieval needed there, same evidence, just re-synthesise).
+    retry_sub_question_ids: list[str] = Field(default_factory=list)
 
     # output
     final_answer: Optional[str] = None
