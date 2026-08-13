@@ -25,7 +25,7 @@ that already has a surviving claim from an earlier pass.
 
 from collections import defaultdict
 
-from src.llm import get_llm
+from src.llm import safe_structured_invoke
 from src.state import AgentState, Claim, SynthesiserOutput
 
 _SYSTEM_PROMPT = """You are the Synthesiser for an internal HR-policy Q&A agent.
@@ -62,9 +62,6 @@ def synthesiser_node(state: AgentState) -> dict:
 
     sub_question_text = {sq.id: sq.text for sq in state.sub_questions}
 
-    llm = get_llm()
-    structured_llm = llm.with_structured_output(SynthesiserOutput)
-
     new_claims = []
     claim_counter = len(state.claims)
     for sub_question_id, evidence_list in evidence_by_sub_question.items():
@@ -72,10 +69,14 @@ def synthesiser_node(state: AgentState) -> dict:
         evidence_block = "\n\n".join(f"[{ev.chunk_id}] {ev.text}" for ev in evidence_list)
         question_text = sub_question_text.get(sub_question_id, sub_question_id)
 
-        result: SynthesiserOutput = structured_llm.invoke([
-            ("system", _SYSTEM_PROMPT),
-            ("human", f"Sub-question: {question_text}\n\nEvidence:\n{evidence_block}"),
-        ])
+        # Fallback on unparseable output is an empty claim list -- same
+        # "no evidence in, no claim out" principle extended to "no readable
+        # output, no claim out" rather than guessing at what the model meant.
+        result: SynthesiserOutput = safe_structured_invoke(
+            SynthesiserOutput,
+            [("system", _SYSTEM_PROMPT), ("human", f"Sub-question: {question_text}\n\nEvidence:\n{evidence_block}")],
+            fallback=lambda err: SynthesiserOutput(claims=[]),
+        )
 
         for candidate in result.claims:
             valid_citations = [c for c in candidate.citations if c in valid_chunk_ids]

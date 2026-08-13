@@ -8,7 +8,7 @@ triggers a KB lookup, and a genuinely unresolvable one can bounce back to
 the Clarifier instead of being planned against garbage.
 """
 
-from src.llm import get_llm
+from src.llm import safe_structured_invoke
 from src.state import AgentState, PlannerOutput, SubQuestion
 
 # Gemini's temperature=0 is not bit-exact deterministic -- observed, across
@@ -45,16 +45,23 @@ Given a clarified question, decide:
 
 
 def planner_node(state: AgentState) -> dict:
-    llm = get_llm()
     question = state.clarified_question or state.raw_question
-    structured_llm = llm.with_structured_output(PlannerOutput)
 
     result = None
     for attempt in range(1, MAX_PLAN_RETRIES + 1):
-        candidate: PlannerOutput = structured_llm.invoke([
-            ("system", _SYSTEM_PROMPT),
-            ("human", question),
-        ])
+        # safe_structured_invoke's own fallback (invalid/unparseable JSON) is
+        # deliberately shaped as the SAME "broken plan" signature this loop
+        # already retries on below (retrieval_needed=True, no sub_questions)
+        # -- one retry loop covers both "didn't parse" and "parsed but
+        # semantically empty" instead of two separate fallback paths.
+        candidate: PlannerOutput = safe_structured_invoke(
+            PlannerOutput,
+            [("system", _SYSTEM_PROMPT), ("human", question)],
+            fallback=lambda err: PlannerOutput(
+                sub_questions=[], retrieval_needed=True, still_ambiguous=False,
+                rationale=f"LLM output could not be parsed: {err}",
+            ),
+        )
         if not candidate.retrieval_needed or candidate.sub_questions:
             result = candidate
             break

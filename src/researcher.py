@@ -22,7 +22,7 @@ interactive/non-interactive split):
   retry must not do.
 """
 
-from src.llm import get_llm
+from src.llm import safe_structured_invoke
 from src.retrieval import RetrievalError, retrieve
 from src.state import AgentState, Evidence, ReformulatedQuery
 
@@ -52,12 +52,18 @@ only the new query text, not commentary about it.
 
 
 def _reformulate_query(sub_question_text: str, previous_evidence: list[Evidence]) -> str:
-    llm = get_llm()
     previous_block = "\n".join(f"- {ev.text}" for ev in previous_evidence) or "(nothing was retrieved)"
-    result: ReformulatedQuery = llm.with_structured_output(ReformulatedQuery).invoke([
-        ("system", _REFORMULATE_SYSTEM_PROMPT),
-        ("human", f"Sub-question: {sub_question_text}\n\nPreviously retrieved (unhelpful):\n{previous_block}"),
-    ])
+    # Fallback on unparseable output is the original sub-question text
+    # verbatim -- equivalent to skipping reformulation for this attempt
+    # rather than crashing the retry.
+    result: ReformulatedQuery = safe_structured_invoke(
+        ReformulatedQuery,
+        [
+            ("system", _REFORMULATE_SYSTEM_PROMPT),
+            ("human", f"Sub-question: {sub_question_text}\n\nPreviously retrieved (unhelpful):\n{previous_block}"),
+        ],
+        fallback=lambda err: ReformulatedQuery(query=sub_question_text),
+    )
     return result.query
 
 
