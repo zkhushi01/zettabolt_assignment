@@ -3,16 +3,31 @@ run_eval.py
 The eval harness: runs all 15 questions (eval/questions.py) 3 times each
 (45 total runs, non-interactive mode -- Clarifier auto-assumes instead of
 blocking, see AgentState.interactive), judges each with an LLM (eval/judge.py),
-and reports:
+and reports, per the task brief's exact metric definitions:
 
-- accuracy (overall and per category)
-- groundedness / hallucination rate (every fact traces to a real citation?)
-- correct-abstention (the 3 unanswerable questions specifically: did the
-  system say "I don't know" instead of guessing?)
-- consistency (does the same question get the same verdict across all 3 of
-  its runs? -- see the CONFLICTING_SOURCES-vs-SUPPORTED instability observed
-  manually earlier in this project on the exact same sick-leave question)
-- cost (LLM calls + tokens, via src/llm.py's usage tracker)
+- Accuracy: does the final answer match the reference answer? (LLM-judge,
+  per question/run -- this one genuinely needs semantic comparison)
+- Groundedness: % of CLAIMS actually supported by their cited text -- a
+  claim-level stat computed directly from the Verifier's own labels
+  (SUPPORTED/CONFLICTING_SOURCES count as grounded -- both mean the claim's
+  OWN citation genuinely backs it; CONFLICTING_SOURCES is a disagreement
+  with a *sibling* claim, not with its own evidence). Deliberately NOT
+  judge-assessed: the Verifier already produced this exact label per claim,
+  so asking a second LLM to re-guess it from the final answer text would be
+  strictly less precise, not more.
+- Hallucination rate: % of claims that are confident but unsupported --
+  the complement of groundedness at the same claim level (UNSUPPORTED /
+  CONTRADICTED claims).
+- Correct-abstention: % of the 3 unanswerable questions' runs where the
+  system actually refused (state.refused) instead of inventing something.
+- Consistency: run all 15 questions 3x, check how often the answer changes
+  -- reported two ways: exact-text-match rate (the literal reading) and a
+  looser same-verdict rate (same judge accuracy label + same refused flag
+  across all 3 runs -- catches the CONFLICTING_SOURCES-vs-SUPPORTED
+  instability observed manually earlier in this project on the sick-leave
+  question, which exact-text-match would flag as "changed" even though the
+  underlying facts stated were the same).
+- Cost: LLM calls + tokens, average per question (src/llm.py's usage tracker).
 
 One run failing (a real API error, not a graph-level refusal) does not stop
 the harness -- it's recorded as an error and the harness moves on, so a
@@ -84,11 +99,16 @@ def _run_one(question: dict, run_index: int) -> dict:
         "refused": final_state.refused,
         "confidence": final_state.confidence,
         "retry_count": final_state.retry_count,
+        "claims": [c.model_dump() for c in final_state.claims],
         "conflicts": [c.model_dump() for c in final_state.conflicts],
         "usage": usage,
         "judge": judge_result,
         "trace_path": trace_path,
     }
+
+
+_GROUNDED_LABELS = ("SUPPORTED", "CONFLICTING_SOURCES")
+_UNGROUNDED_LABELS = ("UNSUPPORTED", "CONTRADICTED")
 
 
 def _aggregate(results: list[dict]) -> dict:
@@ -105,18 +125,24 @@ def _aggregate(results: list[dict]) -> dict:
         score = sum(1.0 if r["judge"]["accuracy"] == "correct" else 0.5 if r["judge"]["accuracy"] == "partial" else 0.0 for r in judged)
         return round(score / len(judged), 3)
 
-    def grounded_rate(rows: list[dict]) -> float:
-        judged = [r for r in rows if r["judge"].get("grounded") is not None]
-        if not judged:
-            return 0.0
-        return round(sum(1 for r in judged if r["judge"]["grounded"]) / len(judged), 3)
+    def claims_in(rows: list[dict]) -> list[dict]:
+        return [c for r in rows for c in r["claims"]]
+
+    def groundedness_rate(rows: list[dict]) -> float:
+        # Claim-level, per the task brief: "% of claims actually supported by
+        # their cited text" -- computed directly from the Verifier's own
+        # per-claim label, not re-assessed by the judge from the final prose.
+        claims = claims_in(rows)
+        if not claims:
+            return 1.0  # no claims produced (e.g. all refusals) -- nothing ungrounded was stated
+        return round(sum(1 for c in claims if c["verification_status"] in _GROUNDED_LABELS) / len(claims), 3)
 
     categories = sorted({q["category"] for q in QUESTIONS})
     per_category = {
         cat: {
             "n_runs": len(category_results(cat)),
             "accuracy": accuracy_rate(category_results(cat)),
-            "groundedness": grounded_rate(category_results(cat)),
+            "groundedness": groundedness_rate(category_results(cat)),
         }
         for cat in categories
     }
@@ -127,39 +153,49 @@ def _aggregate(results: list[dict]) -> dict:
         if unanswerable_runs else 0.0
     )
 
-    hallucination_rate = round(1 - grounded_rate(valid), 3) if valid else 0.0
+    overall_groundedness = groundedness_rate(valid)
+    hallucination_rate = round(1 - overall_groundedness, 3)
 
-    # Consistency: for each question, do all its runs agree on both the
-    # judge's accuracy verdict AND the refused flag? A question that flips
-    # between CONFLICTING_SOURCES-labeled-as-SUPPORTED-vs-not across runs
-    # (observed manually earlier on Q14, the sick-leave question) shows up
-    # here as inconsistent.
+    # Consistency, reported two ways -- see module docstring for why both:
+    # exact_answer_match_rate is the literal "does the answer text change"
+    # reading; verdict_match_rate additionally tolerates the same underlying
+    # facts being phrased differently but flags a genuine verdict flip
+    # (e.g. a contradiction detected in one run and missed in another).
     by_question = defaultdict(list)
     for r in valid:
         by_question[r["question_id"]].append(r)
-    consistent_questions = 0
+
+    exact_match_questions = 0
+    verdict_match_questions = 0
     inconsistent_question_ids = []
     for qid, rows in by_question.items():
-        signatures = {(r["judge"].get("accuracy"), r["refused"]) for r in rows}
-        if len(signatures) == 1:
-            consistent_questions += 1
+        if len({r["final_answer"] for r in rows}) == 1:
+            exact_match_questions += 1
+        verdict_signatures = {(r["judge"].get("accuracy"), r["refused"]) for r in rows}
+        if len(verdict_signatures) == 1:
+            verdict_match_questions += 1
         else:
             inconsistent_question_ids.append(qid)
-    consistency_rate = round(consistent_questions / len(by_question), 3) if by_question else 0.0
+
+    n_questions = len(by_question) or 1
+    exact_answer_match_rate = round(exact_match_questions / n_questions, 3)
+    verdict_match_rate = round(verdict_match_questions / n_questions, 3)
 
     total_calls = sum(r["usage"]["llm_calls"] for r in valid)
     total_tokens = sum(r["usage"]["total_tokens"] for r in valid)
-    n_questions = len(by_question) or 1
 
     return {
         "n_total_runs": len(results),
         "n_errored_runs": len(errored),
         "overall_accuracy": accuracy_rate(valid),
-        "overall_groundedness": grounded_rate(valid),
+        "overall_groundedness": overall_groundedness,
         "hallucination_rate": hallucination_rate,
         "correct_abstention_rate": correct_abstention,
-        "consistency_rate": consistency_rate,
-        "inconsistent_question_ids": inconsistent_question_ids,
+        "consistency": {
+            "exact_answer_match_rate": exact_answer_match_rate,
+            "verdict_match_rate": verdict_match_rate,
+            "inconsistent_question_ids": inconsistent_question_ids,
+        },
         "per_category": per_category,
         "cost": {
             "total_llm_calls": total_calls,

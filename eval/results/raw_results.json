@@ -4,21 +4,45 @@
     "category": "single_doc",
     "run_index": 1,
     "run_id": "Q01_run1",
-    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v2.md_chunk_4, leave_policy_v1.md_chunk_4).",
+    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year. [leave_policy_v2.md_chunk_4] [leave_policy_v1.md_chunk_4]",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence in leave_policy_v2.md_chunk_4 explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence in leave_policy_v1.md_chunk_4 also explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 1980,
-      "output_tokens": 522,
-      "total_tokens": 2502
+      "input_tokens": 1982,
+      "output_tokens": 625,
+      "total_tokens": 2607
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identified the annual casual leave entitlement as 8 days per calendar year, matching the reference answer, and all stated claims are grounded in the available claims."
+      "reasoning": "The agent correctly stated the annual casual leave entitlement as 8 days per calendar year, matching the reference answer and supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q01_run1.json"
   },
@@ -27,21 +51,45 @@
     "category": "single_doc",
     "run_index": 2,
     "run_id": "Q01_run2",
-    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v2.md_chunk_4), to be used for personal matters requiring short notice (leave_policy_v1.md_chunk_4).",
+    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year according to leave_policy_v2.md_chunk_4. [leave_policy_v2.md_chunk_4] Employees are entitled to 8 days of casual leave per calendar year according to leave_policy_v1.md_chunk_4. [leave_policy_v1.md_chunk_4]",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year according to leave_policy_v2.md_chunk_4.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year according to leave_policy_v1.md_chunk_4.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly confirms the entitlement to 8 days of casual leave per calendar year."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2002,
-      "output_tokens": 599,
-      "total_tokens": 2601
+      "llm_calls": 5,
+      "input_tokens": 1679,
+      "output_tokens": 552,
+      "total_tokens": 2231
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the annual casual leave entitlement as 8 days per calendar year, matching the reference answer and supported by the available claims."
+      "reasoning": "The agent correctly identifies that employees are entitled to 8 days of casual leave per calendar year, matching the reference answer, and all claims are fully supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q01_run2.json"
   },
@@ -50,21 +98,45 @@
     "category": "single_doc",
     "run_index": 3,
     "run_id": "Q01_run3",
-    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v2.md_chunk_4, leave_policy_v1.md_chunk_4).",
+    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v2.md_chunk_4), to be used for personal matters requiring short notice (leave_policy_v1.md_chunk_4).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year, to be used for personal matters requiring short notice.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year, to be used for personal matters requiring short notice."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 5,
-      "input_tokens": 1623,
-      "output_tokens": 485,
-      "total_tokens": 2108
+      "input_tokens": 1643,
+      "output_tokens": 530,
+      "total_tokens": 2173
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the annual casual leave entitlement as 8 days, matching the reference answer and supported by the available claims."
+      "reasoning": "The agent correctly identifies the annual casual leave entitlement as 8 days, matching the reference answer. The factual claim is fully supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q01_run3.json"
   },
@@ -73,21 +145,45 @@
     "category": "single_doc",
     "run_index": 1,
     "run_id": "Q02_run1",
-    "final_answer": "Employees are entitled to 10 public holidays per year according to leave_policy_v2.md_chunk_8 [leave_policy_v2.md_chunk_8] and leave_policy_v1.md_chunk_8 [leave_policy_v1.md_chunk_8].",
+    "final_answer": "Employees are entitled to 10 public holidays per year (leave_policy_v1.md_chunk_8, leave_policy_v2.md_chunk_8).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 10 public holidays per year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that employees are entitled to 10 public holidays per year."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees are entitled to 10 public holidays per year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that employees are entitled to 10 public holidays per year and both policies agree."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2076,
-      "output_tokens": 2512,
-      "total_tokens": 4588
+      "llm_calls": 5,
+      "input_tokens": 1658,
+      "output_tokens": 464,
+      "total_tokens": 2122
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated that employees are entitled to 10 public holidays per year, matching the reference answer. All claims made by the agent are fully supported by the provided claims."
+      "reasoning": "The agent correctly stated the number of public holidays per year as 10, matching the reference answer and available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q02_run1.json"
   },
@@ -96,21 +192,47 @@
     "category": "single_doc",
     "run_index": 2,
     "run_id": "Q02_run2",
-    "final_answer": "Employees are entitled to 10 public holidays per year. [leave_policy_v1.md_chunk_8]",
+    "final_answer": "Employees are entitled to 10 public holidays per year (leave_policy_v2.md_chunk_8, leave_policy_v1.md_chunk_8). Public holidays are determined as per the calendar published annually by HR (leave_policy_v2.md_chunk_8, leave_policy_v1.md_chunk_8).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 10 public holidays per year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_8",
+          "leave_policy_v1.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 10 public holidays per year."
+      },
+      {
+        "id": "claim2",
+        "text": "Public holidays are determined as per the calendar published annually by HR.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_8",
+          "leave_policy_v1.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that public holidays are as per the calendar published annually by HR."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 5,
-      "input_tokens": 1658,
-      "output_tokens": 446,
-      "total_tokens": 2104
+      "llm_calls": 6,
+      "input_tokens": 2160,
+      "output_tokens": 599,
+      "total_tokens": 2759
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated the number of public holidays (10) as required by the reference answer, and the claim is fully supported by the available claims."
+      "reasoning": "The agent correctly identifies that employees are entitled to 10 public holidays per year and mentions that they are determined by the calendar published annually by HR, matching the reference answer. All stated claims trace back to the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q02_run2.json"
   },
@@ -119,21 +241,45 @@
     "category": "single_doc",
     "run_index": 3,
     "run_id": "Q02_run3",
-    "final_answer": "Employees are entitled to 10 public holidays per year [leave_policy_v1.md_chunk_8] [leave_policy_v2.md_chunk_8]. Public holidays are as per the calendar published annually by HR [leave_policy_v1.md_chunk_8] [leave_policy_v2.md_chunk_8].",
+    "final_answer": "Employees are entitled to 10 public holidays per year (leave_policy_v2.md_chunk_8, leave_policy_v1.md_chunk_8).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 10 public holidays per year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence from leave_policy_v2.md_chunk_8 explicitly states that employees are entitled to 10 public holidays per year."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees are entitled to 10 public holidays per year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_8"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence from leave_policy_v1.md_chunk_8 explicitly states that employees are entitled to 10 public holidays per year, and there is no conflicting fact value in the other source."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 5,
-      "input_tokens": 1864,
-      "output_tokens": 685,
-      "total_tokens": 2549
+      "input_tokens": 1658,
+      "output_tokens": 545,
+      "total_tokens": 2203
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated that employees are entitled to 10 public holidays per year and referenced the calendar published annually by HR, matching all key facts from the reference answer. All claims made by the agent are traceable to the available claims."
+      "reasoning": "The agent correctly stated that employees are entitled to 10 public holidays per year, matching the reference answer and available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q02_run3.json"
   },
@@ -142,21 +288,67 @@
     "category": "single_doc",
     "run_index": 1,
     "run_id": "Q03_run1",
-    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2). The H1 Review covers January to June and is conducted in July (performance_review_policy.md_chunk_2), while the H2 Review covers July to December and is conducted in January (performance_review_policy.md_chunk_2). Additionally, WFH eligibility is reviewed every 6 months alongside the standard performance review cycle (wfh_policy.md_chunk_5).",
+    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2) and the standard performance review cycle occurs every 6 months (wfh_policy.md_chunk_5). The H1 Review covers January through June and is conducted in July, while the H2 Review covers July through December and is conducted in January (performance_review_policy.md_chunk_2). Regarding the names of the two performance review periods, this could not be answered.",
     "refused": false,
-    "confidence": 1.0,
+    "confidence": 0.9,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Performance reviews are conducted twice a year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that performance reviews are conducted twice a year."
+      },
+      {
+        "id": "claim2",
+        "text": "The H1 Review covers January through June and is conducted in July.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence confirms the H1 Review covers January through June and is conducted in July."
+      },
+      {
+        "id": "claim3",
+        "text": "The H2 Review covers July through December and is conducted in January.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence confirms the H2 Review covers July through December and is conducted in January."
+      },
+      {
+        "id": "claim4",
+        "text": "The standard performance review cycle occurs every 6 months.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence indicates that the standard performance review cycle occurs alongside WFH eligibility reviews every 6 months."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2495,
-      "output_tokens": 888,
-      "total_tokens": 3383
+      "input_tokens": 2270,
+      "output_tokens": 762,
+      "total_tokens": 3032
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identifies the frequency of performance reviews (twice a year) and names both review periods (H1 and H2) along with their respective months, perfectly matching the reference answer. Although it includes an extra claim regarding WFH eligibility review, that claim is also present in the available claims and is factually correct."
+      "accuracy": "incorrect",
+      "grounded": false,
+      "reasoning": "The agent correctly identified the frequency and the names of the two review periods from the claims, but falsely claimed that the names of the two review periods could not be answered, which contradicts its own preceding sentence and the reference answer."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q03_run1.json"
   },
@@ -165,21 +357,67 @@
     "category": "single_doc",
     "run_index": 2,
     "run_id": "Q03_run2",
-    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2). The H1 Review covers January to June and is conducted in July (performance_review_policy.md_chunk_2), and the H2 Review covers July to December and is conducted in January (performance_review_policy.md_chunk_2). However, what the names of the two performance review periods are could not be answered.",
+    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2). The H1 Review covers January through June and is conducted in July, while the H2 Review covers July through December and is conducted in January (performance_review_policy.md_chunk_2). WFH eligibility is reviewed every 6 months alongside the standard performance review cycle (wfh_policy.md_chunk_5). Regarding the question about the names of the two performance review periods, this could not be answered.",
     "refused": false,
     "confidence": 0.9,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Performance reviews are conducted twice a year.",
+        "sub_question_id": "sub_1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that performance reviews are conducted twice a year."
+      },
+      {
+        "id": "claim2",
+        "text": "The H1 Review covers January through June and is conducted in July.",
+        "sub_question_id": "sub_1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that the H1 Review covers January through June and is conducted in July."
+      },
+      {
+        "id": "claim3",
+        "text": "The H2 Review covers July through December and is conducted in January.",
+        "sub_question_id": "sub_1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that the H2 Review covers July through December and is conducted in January."
+      },
+      {
+        "id": "claim4",
+        "text": "WFH eligibility is reviewed every 6 months alongside the standard performance review cycle.",
+        "sub_question_id": "sub_1",
+        "citations": [
+          "wfh_policy.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that WFH eligibility is reviewed every 6 months alongside the standard performance review cycle."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2173,
-      "output_tokens": 612,
-      "total_tokens": 2785
+      "llm_calls": 7,
+      "input_tokens": 2647,
+      "output_tokens": 861,
+      "total_tokens": 3508
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated the frequency of performance reviews and both review periods (H1 and H2), along with their months and the months they are conducted, even though it added an erroneous statement at the end claiming it couldn't name them. However, looking at the core facts requested, it successfully provided all key facts."
+      "reasoning": "The agent correctly states the frequency of performance reviews and names the two review periods (H1 and H2), along with their coverage and conduction months, which matches the reference answer. Although it includes an extra detail about WFH eligibility and a strange final sentence claiming it couldn't answer the question about the names (despite having just named them), the core facts requested are all present and accurate according to the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q03_run2.json"
   },
@@ -188,21 +426,67 @@
     "category": "single_doc",
     "run_index": 3,
     "run_id": "Q03_run3",
-    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2). The H1 Review covers January to June and is conducted in July (performance_review_policy.md_chunk_2), while the H2 Review covers July to December and is conducted in January (performance_review_policy.md_chunk_2). Regarding the question about what the names of the two performance review periods are, that could not be answered.",
+    "final_answer": "Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2) and the standard performance review cycle occurs every 6 months (wfh_policy.md_chunk_5). The H1 Review covers January through June and is conducted in July (performance_review_policy.md_chunk_2), while the H2 Review covers July through December and is conducted in January (performance_review_policy.md_chunk_2). Regarding the names of the two performance review periods, this question could not be answered.",
     "refused": false,
     "confidence": 0.9,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Performance reviews are conducted twice a year.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that performance reviews are conducted twice a year."
+      },
+      {
+        "id": "claim2",
+        "text": "The H1 Review covers January through June and is conducted in July.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly specifies that the H1 Review covers January\u2013June and is conducted in July."
+      },
+      {
+        "id": "claim3",
+        "text": "The H2 Review covers July through December and is conducted in January.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence confirms that the H2 Review covers July\u2013December and is conducted in January."
+      },
+      {
+        "id": "claim4",
+        "text": "The standard performance review cycle occurs every 6 months.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence references the standard performance review cycle occurring every 6 months alongside WFH eligibility reviews."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 7,
-      "input_tokens": 2540,
-      "output_tokens": 783,
-      "total_tokens": 3323
+      "llm_calls": 6,
+      "input_tokens": 2270,
+      "output_tokens": 808,
+      "total_tokens": 3078
     },
     "judge": {
-      "accuracy": "partial",
-      "grounded": false,
-      "reasoning": "The agent correctly identifies that reviews happen twice a year, and provides the correct details for the H1 and H2 review periods. However, it incorrectly states that the question about what the two review periods are called could not be answered, despite just having named them H1 and H2. This makes it contradictory and leads to a partial score, as well as an ungrounded claim regarding its inability to answer."
+      "accuracy": "correct",
+      "grounded": true,
+      "reasoning": "The agent correctly identifies that performance reviews are conducted twice a year, names the two review periods (H1 Review and H2 Review), and provides all the key details regarding their coverage periods and when they are conducted, matching the reference answer."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q03_run3.json"
   },
@@ -211,21 +495,34 @@
     "category": "single_doc",
     "run_index": 1,
     "run_id": "Q04_run1",
-    "final_answer": "Approved employees may work from home up to 2 days per week (wfh_policy.md_chunk_3). Full-time 5 days per week WFH requires additional sign-off from the department head and HR business partner (wfh_policy.md_chunk_3). Furthermore, full-time WFH is granted only in exceptional circumstances such as medical accommodation or approved relocation (wfh_policy.md_chunk_3).",
+    "final_answer": "Approved employees may work from home up to 2 days per week. (wfh_policy.md_chunk_3)",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Approved employees may work from home up to 2 days per week.",
+        "sub_question_id": "q1",
+        "citations": [
+          "wfh_policy.md_chunk_3"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that approved employees may work from home up to 2 days per week."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2304,
-      "output_tokens": 768,
-      "total_tokens": 3072
+      "llm_calls": 5,
+      "input_tokens": 1606,
+      "output_tokens": 413,
+      "total_tokens": 2019
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the standard WFH limit of up to 2 days per week and accurately includes the details regarding full-time WFH and exceptional circumstances, fully matching the reference answer and utilizing only valid claims."
+      "reasoning": "The agent correctly stated the key fact that approved employees may work from home up to 2 days per week, matching the reference answer and using only available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q04_run1.json"
   },
@@ -234,21 +531,34 @@
     "category": "single_doc",
     "run_index": 2,
     "run_id": "Q04_run2",
-    "final_answer": "Approved employees may work from home up to 2 days per week (wfh_policy.md_chunk_3). Full-time (5 days/week) WFH requires additional sign-off from the department head and HR business partner (wfh_policy.md_chunk_3), and is granted only in exceptional circumstances (wfh_policy.md_chunk_3).",
+    "final_answer": "Approved employees may work from home up to 2 days per week. (wfh_policy.md_chunk_3)",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Approved employees may work from home up to 2 days per week.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_3"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that approved employees may work from home up to 2 days per week."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2292,
-      "output_tokens": 4448,
-      "total_tokens": 6740
+      "input_tokens": 2008,
+      "output_tokens": 5895,
+      "total_tokens": 7903
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated the key facts from the reference answer (up to 2 days per week, and full-time WFH under exceptional circumstances with additional sign-off) and all claims trace directly to the provided available claims."
+      "reasoning": "The agent correctly stated that approved employees may work from home up to 2 days per week, which matches the key fact in the reference answer and traces directly back to the available claim."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q04_run2.json"
   },
@@ -257,21 +567,56 @@
     "category": "single_doc",
     "run_index": 3,
     "run_id": "Q04_run3",
-    "final_answer": "Approved employees may work from home up to 2 days per week (wfh_policy.md_chunk_3). Full-time 5 days per week WFH requires additional sign-off from the department head and HR business partner (wfh_policy.md_chunk_3). Full-time WFH is granted only in exceptional circumstances such as medical accommodation or approved relocation (wfh_policy.md_chunk_3).",
+    "final_answer": "Approved employees may work from home up to 2 days per week (wfh_policy.md_chunk_3). Full-time (5 days/week) WFH requires additional sign-off from the department head and HR business partner (wfh_policy.md_chunk_3). Furthermore, full-time WFH is granted only in exceptional circumstances such as medical accommodation or approved relocation (wfh_policy.md_chunk_3).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Approved employees may work from home up to 2 days per week.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_3"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that approved employees may work from home up to 2 days per week."
+      },
+      {
+        "id": "claim2",
+        "text": "Full-time (5 days/week) WFH requires additional sign-off from the department head and HR business partner.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_3"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that full-time WFH requires additional sign-off from the department head and HR business partner."
+      },
+      {
+        "id": "claim3",
+        "text": "Full-time WFH is granted only in exceptional circumstances such as medical accommodation or approved relocation.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_3"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that full-time WFH is granted only in exceptional circumstances like medical accommodation or approved relocation."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2304,
-      "output_tokens": 748,
-      "total_tokens": 3052
+      "llm_calls": 5,
+      "input_tokens": 1925,
+      "output_tokens": 716,
+      "total_tokens": 2641
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies that approved employees can work from home up to 2 days per week, and includes all the key facts from the reference answer. Every claim made by the agent is fully supported by the available claims."
+      "reasoning": "The agent accurately states all key facts from the reference answer (number of days, exception conditions, and sign-off requirements) and every claim used directly traces back to the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q04_run3.json"
   },
@@ -280,21 +625,69 @@
     "category": "single_doc",
     "run_index": 1,
     "run_id": "Q05_run1",
-    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5]. Earned leave may be carried forward up to a maximum of 30 days [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5].",
+    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5]. Earned leave is capped at 18 days per year [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5] and may be carried forward up to a maximum of 30 days [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5].",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5",
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "Earned leave is capped at 18 days per year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5",
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly mentions that earned leave is capped at 18 days per year."
+      },
+      {
+        "id": "claim3",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v1.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence states that earned leave may be carried forward up to a maximum of 30 days."
+      },
+      {
+        "id": "claim4",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence states that earned leave may be carried forward up to a maximum of 30 days."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2361,
-      "output_tokens": 765,
-      "total_tokens": 3126
+      "input_tokens": 2564,
+      "output_tokens": 917,
+      "total_tokens": 3481
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the accrual rate (1.5 days per month) and the maximum carry-forward limit (30 days), matching the key facts in the reference answer."
+      "reasoning": "The agent correctly stated the accrual rate (1.5 days per month), annual cap (18 days), and maximum carry-forward limit (30 days), matching the reference answer and supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q05_run1.json"
   },
@@ -303,21 +696,69 @@
     "category": "single_doc",
     "run_index": 2,
     "run_id": "Q05_run2",
-    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5]. Earned leave is capped at 18 days per year [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5], and it may be carried forward up to a maximum of 30 days [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5].",
+    "final_answer": "Employees accrue 1.5 days of earned leave per month of service (leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5). Earned leave is capped at 18 days per year (leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5) and may be carried forward up to a maximum of 30 days (leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5",
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "Earned leave is capped at 18 days per year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5",
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that earned leave is capped at 18 days per year."
+      },
+      {
+        "id": "claim3",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v1.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that earned leave may be carried forward up to a maximum of 30 days."
+      },
+      {
+        "id": "claim4",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that earned leave may be carried forward up to a maximum of 30 days."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
       "input_tokens": 2564,
-      "output_tokens": 901,
-      "total_tokens": 3465
+      "output_tokens": 909,
+      "total_tokens": 3473
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly states the earned leave accrual rate (1.5 days per month), the annual cap (18 days), and the maximum carry-forward limit (30 days), matching all key facts from the reference answer. All factual claims are supported by the available claims."
+      "reasoning": "The agent correctly stated all the key facts from the reference answer, including the accrual rate (1.5 days per month), the annual cap (18 days), and the maximum carry-forward limit (30 days). All stated claims directly trace back to the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q05_run2.json"
   },
@@ -330,17 +771,53 @@
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5",
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v1.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that earned leave may be carried forward up to a maximum of 30 days."
+      },
+      {
+        "id": "claim3",
+        "text": "Earned leave may be carried forward up to a maximum of 30 days.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that earned leave may be carried forward up to a maximum of 30 days."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2361,
-      "output_tokens": 752,
-      "total_tokens": 3113
+      "input_tokens": 2363,
+      "output_tokens": 740,
+      "total_tokens": 3103
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly states the earned leave accrual rate (1.5 days per month) and the maximum carry-forward limit (30 days), matching the key facts in the reference answer. All stated facts are directly supported by the available claims."
+      "reasoning": "The agent correctly states the earned leave accrual rate (1.5 days per month) and the maximum carry-forward limit (30 days), matching the key facts in the reference answer. All stated claims are fully supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q05_run3.json"
   },
@@ -353,17 +830,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
       "llm_calls": 3,
-      "input_tokens": 955,
-      "output_tokens": 198,
-      "total_tokens": 1153
+      "input_tokens": 1009,
+      "output_tokens": 212,
+      "total_tokens": 1221
     },
     "judge": {
       "accuracy": "incorrect",
       "grounded": true,
-      "reasoning": "The reference answer clearly states that new hires must submit ID proof, address proof, and educational certificates before joining, which was present in the knowledge base. The agent incorrectly refused to answer the question, leading to an incorrect result."
+      "reasoning": "The agent refused to answer and stated it couldn't find the information, but the knowledge base actually contained the required documents (ID proof, address proof, and educational certificates) in the onboarding checklist. Therefore, the refusal was incorrect."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q06_run1.json"
   },
@@ -376,17 +854,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
       "llm_calls": 3,
-      "input_tokens": 958,
-      "output_tokens": 219,
-      "total_tokens": 1177
+      "input_tokens": 1008,
+      "output_tokens": 233,
+      "total_tokens": 1241
     },
     "judge": {
       "accuracy": "incorrect",
       "grounded": true,
-      "reasoning": "The agent incorrectly refused to answer the question, even though the required documents (ID proof, address proof, and educational certificates) are clearly stated in the reference document and should have been retrieved."
+      "reasoning": "The agent refused to answer the question, but the reference answer indicates that the information was available in the knowledge base (onboarding_checklist.md). Therefore, the refusal is incorrect."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q06_run2.json"
   },
@@ -399,17 +878,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 4,
-      "input_tokens": 1382,
-      "output_tokens": 262,
-      "total_tokens": 1644
+      "llm_calls": 3,
+      "input_tokens": 962,
+      "output_tokens": 226,
+      "total_tokens": 1188
     },
     "judge": {
       "accuracy": "incorrect",
       "grounded": true,
-      "reasoning": "The reference answer clearly states that new hires must submit ID proof, address proof, and educational certificates before joining, based on onboarding_checklist.md. The agent incorrectly refused to answer."
+      "reasoning": "The reference answer clearly states the required documents from onboarding_checklist.md, but the agent incorrectly refused to answer."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q06_run3.json"
   },
@@ -418,21 +898,68 @@
     "category": "multi_hop",
     "run_index": 1,
     "run_id": "Q07_run1",
-    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5]. The standard notice period for voluntary resignation is 60 days [exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2]. Additionally, the reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed [exit_offboarding_policy.md_chunk_2].",
+    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5]. The standard notice period for voluntary resignation is 60 days [exit_offboarding_policy.md_chunk_7]. The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed [exit_offboarding_policy.md_chunk_2].",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service",
+        "sub_question_id": "q1",
+        "citations": [
+          "leave_policy_v1.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "Employees accrue 1.5 days of earned leave per month of service",
+        "sub_question_id": "q1",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees accrue 1.5 days of earned leave per month of service, matching claim1 without contradicting its underlying facts."
+      },
+      {
+        "id": "claim3",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "q2",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7",
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly indicates that the standard notice period for voluntary resignation is 60 days."
+      },
+      {
+        "id": "claim4",
+        "text": "The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed.",
+        "sub_question_id": "q2",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that the reporting manager may approve a shorter notice period subject to a knowledge-transfer plan completion."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 7,
-      "input_tokens": 2950,
-      "output_tokens": 1255,
-      "total_tokens": 4205
+      "llm_calls": 6,
+      "input_tokens": 2577,
+      "output_tokens": 841,
+      "total_tokens": 3418
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies both the earned leave accrual rate (1.5 days per month) and the standard notice period for voluntary resignation (60 days), matching the key facts from the reference answer. It also correctly includes additional permitted details from the available claims."
+      "reasoning": "The agent correctly identifies both the earned leave accrual rate (1.5 days per month) and the standard notice period (60 days), matching all key facts from the reference answer. It also includes an additional relevant detail about shorter notice periods which is present in the available claims. All claims made are properly backed by the provided context, making it fully grounded."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q07_run1.json"
   },
@@ -441,21 +968,45 @@
     "category": "multi_hop",
     "run_index": 2,
     "run_id": "Q07_run2",
-    "final_answer": "Employees accrue 1.5 days of earned leave per month of service (leave_policy_v2.md_chunk_5). The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7).",
+    "final_answer": "Employees accrue 1.5 days of earned leave per month of service. [leave_policy_v2.md_chunk_5] The standard notice period for voluntary resignation is 60 days. [exit_offboarding_policy.md_chunk_7]",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly refers to the standard 60-day notice for voluntary resignation."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2162,
-      "output_tokens": 695,
-      "total_tokens": 2857
+      "input_tokens": 2166,
+      "output_tokens": 661,
+      "total_tokens": 2827
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly retrieved both independent facts from the two different documents (1.5 days per month for earned leave and 60 days for voluntary resignation notice period), matching the reference answer. All stated claims are fully grounded in the available claims."
+      "reasoning": "The agent correctly identified both independent facts (1.5 days earned leave accrual per month and 60 days notice period for voluntary resignation) from their respective documents and accurately stated them. Both facts are fully supported by the available claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q07_run2.json"
   },
@@ -464,21 +1015,45 @@
     "category": "multi_hop",
     "run_index": 3,
     "run_id": "Q07_run3",
-    "final_answer": "Employees accrue 1.5 days of earned leave per month of service [leave_policy_v1.md_chunk_5, leave_policy_v2.md_chunk_5]. The standard notice period for voluntary resignation is 60 days [exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2]. Additionally, the reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed [exit_offboarding_policy.md_chunk_2].",
+    "final_answer": "Employees accrue 1.5 days of earned leave per month of service (leave_policy_v2.md_chunk_5). The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees accrue 1.5 days of earned leave per month of service.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v2.md_chunk_5"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees accrue 1.5 days of earned leave per month of service."
+      },
+      {
+        "id": "claim2",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly mentions the standard 60-day notice for voluntary resignation."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2577,
-      "output_tokens": 919,
-      "total_tokens": 3496
+      "input_tokens": 2166,
+      "output_tokens": 5639,
+      "total_tokens": 7805
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly stated both key facts: earned leave accrual at 1.5 days per month and a 60-day notice period for voluntary resignation. It also included additional relevant context from the available claims without introducing any ungrounded information."
+      "reasoning": "The agent correctly identifies both the earned leave accrual rate (1.5 days per month) and the standard notice period for voluntary resignation (60 days), matching the reference answer and using the correct multi-hop facts."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q07_run3.json"
   },
@@ -487,21 +1062,68 @@
     "category": "multi_hop",
     "run_index": 1,
     "run_id": "Q08_run1",
-    "final_answer": "Employees who resign voluntarily are required to serve a notice period of 60 days from the date of resignation (exit_offboarding_policy.md_chunk_2). However, the reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed (exit_offboarding_policy.md_chunk_2). Notice periods for termination due to misconduct are governed separately under the Code of Conduct and may differ from the standard 60-day notice (exit_offboarding_policy.md_chunk_7). In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6), and employees terminated for misconduct may be relieved with immediate effect following due process and a disciplinary committee review (code_of_conduct.md_chunk_6).",
+    "final_answer": "The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2). The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed (exit_offboarding_policy.md_chunk_2). Notice periods for termination due to misconduct are governed separately under the Code of Conduct and may differ from the standard 60-day notice (exit_offboarding_policy.md_chunk_7). In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "q1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7",
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees who resign voluntarily are required to serve a notice period of 60 days."
+      },
+      {
+        "id": "claim2",
+        "text": "The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed.",
+        "sub_question_id": "q1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence matches the claim word-for-word regarding the manager's discretion to approve a shorter notice period subject to a knowledge-transfer plan."
+      },
+      {
+        "id": "claim3",
+        "text": "In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion.",
+        "sub_question_id": "q2",
+        "citations": [
+          "code_of_conduct.md_chunk_6"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that in cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion."
+      },
+      {
+        "id": "claim4",
+        "text": "Notice periods for termination due to misconduct are governed separately under the Code of Conduct and may differ from the standard 60-day notice.",
+        "sub_question_id": "q2",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that notice periods for termination due to misconduct are governed under the Code of Conduct and may differ from the standard 60-day notice."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 7,
-      "input_tokens": 3162,
-      "output_tokens": 1216,
-      "total_tokens": 4378
+      "input_tokens": 3083,
+      "output_tokens": 1124,
+      "total_tokens": 4207
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the standard 60-day notice period for voluntary resignation and properly addresses the waiver of notice for termination due to misconduct, referencing both relevant documents accurately and matching the key facts in the reference answer."
+      "reasoning": "The agent correctly identifies both the 60-day standard notice period for voluntary resignation and the fact that the notice period can be waived entirely at the company's discretion for termination due to proven misconduct. All stated facts are accurate and directly traceable to the provided claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q08_run1.json"
   },
@@ -510,21 +1132,68 @@
     "category": "multi_hop",
     "run_index": 2,
     "run_id": "Q08_run2",
-    "final_answer": "The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2). The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed (exit_offboarding_policy.md_chunk_2). In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6). Notice periods for termination due to misconduct are governed separately under the Code of Conduct and may differ from the standard 60-day notice (exit_offboarding_policy.md_chunk_7).",
+    "final_answer": "The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2). The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed (exit_offboarding_policy.md_chunk_2). In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6). Furthermore, for termination due to misconduct, the employee may be relieved with immediate effect following due process and a disciplinary committee review (code_of_conduct.md_chunk_6).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "q1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7",
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees who resign voluntarily are required to serve a 60-day notice period."
+      },
+      {
+        "id": "claim2",
+        "text": "The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed.",
+        "sub_question_id": "q1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence directly supports that the reporting manager may approve a shorter notice period subject to a knowledge-transfer plan."
+      },
+      {
+        "id": "claim3",
+        "text": "In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion.",
+        "sub_question_id": "q2",
+        "citations": [
+          "code_of_conduct.md_chunk_6"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly mentions that in cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion."
+      },
+      {
+        "id": "claim4",
+        "text": "For termination due to misconduct, the employee may be relieved with immediate effect following due process and a disciplinary committee review.",
+        "sub_question_id": "q2",
+        "citations": [
+          "code_of_conduct.md_chunk_6"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly confirms that the employee may be relieved with immediate effect following due process and a disciplinary committee review."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 7,
-      "input_tokens": 3083,
-      "output_tokens": 1084,
-      "total_tokens": 4167
+      "input_tokens": 3081,
+      "output_tokens": 1018,
+      "total_tokens": 4099
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the standard notice period for resignation as 60 days and addresses the misconduct waiver correctly based on the reference answer. All factual claims used are present in the available claims."
+      "reasoning": "The agent correctly identifies the standard notice period for voluntary resignation as 60 days and correctly addresses the misconduct termination waiver clause, matching all key facts from the reference answer. All claims made are also present in the available claims list."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q08_run2.json"
   },
@@ -533,21 +1202,46 @@
     "category": "multi_hop",
     "run_index": 3,
     "run_id": "Q08_run3",
-    "final_answer": "The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2). The reporting manager may approve a shorter notice period at their discretion, subject to a knowledge-transfer plan being completed (exit_offboarding_policy.md_chunk_2). Notice periods for termination due to misconduct are governed separately under the Code of Conduct and may differ from standard notice periods (exit_offboarding_policy.md_chunk_7). In cases of termination for proven misconduct, employees may be relieved with immediate effect following due process and a disciplinary committee review, and the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6).",
+    "final_answer": "The standard notice period for voluntary resignation is 60 days (exit_offboarding_policy.md_chunk_7, exit_offboarding_policy.md_chunk_2). In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion (code_of_conduct.md_chunk_6).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "The standard notice period for voluntary resignation is 60 days.",
+        "sub_question_id": "q1",
+        "citations": [
+          "exit_offboarding_policy.md_chunk_7",
+          "exit_offboarding_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence in chunk 2 explicitly states that employees who resign voluntarily are required to serve a notice period of 60 days."
+      },
+      {
+        "id": "claim2",
+        "text": "In cases of termination for proven misconduct, the notice period requirement may be waived entirely at the company's discretion.",
+        "sub_question_id": "q2",
+        "citations": [
+          "code_of_conduct.md_chunk_6"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence in chunk 6 clearly states that in cases of termination for proven misconduct, the notice period may be waived entirely at the company's discretion."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2862,
-      "output_tokens": 1029,
-      "total_tokens": 3891
+      "input_tokens": 2384,
+      "output_tokens": 611,
+      "total_tokens": 2995
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the standard notice period for voluntary resignation as 60 days and accurately addresses the waiver condition for termination due to misconduct, matching all key facts in the reference answer and relying strictly on the provided claims."
+      "reasoning": "The agent correctly identifies both the 60-day standard notice period for voluntary resignation and the waiver of notice for termination due to misconduct, matching the reference answer and using only valid claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q08_run3.json"
   },
@@ -556,21 +1250,67 @@
     "category": "multi_hop",
     "run_index": 1,
     "run_id": "Q09_run1",
-    "final_answer": "The WFH policy outlines the eligibility criteria and guidelines for employees who wish to work from home on a regular or occasional basis (wfh_policy.md_chunk_1). Zone A includes Pune, Bengaluru, and Hyderabad (remote_work_zones.md_chunk_2). Zone B includes Jaipur, Chandigarh, and Kochi (remote_work_zones.md_chunk_2). Zone C includes any Tier-2 city with a NimbusWorks-partnered coworking space (remote_work_zones.md_chunk_2), and the current cities listed for Zone C are Indore, Coimbatore, and Nagpur (remote_work_zones.md_chunk_2).",
+    "final_answer": "Full-remote hiring is permitted in Zone A (which includes Pune, Bengaluru, and Hyderabad), Zone B (which includes Jaipur, Chandigarh, and Kochi), and Zone C (which includes any Tier-2 city with a NimbusWorks-partnered coworking space, currently Indore, Coimbatore, and Nagpur) (remote_work_zones.md_chunk_2). Regarding what the eligibility criteria are for working from home, this could not be answered.",
     "refused": false,
-    "confidence": 1.0,
+    "confidence": 0.9,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Full-remote hiring is permitted in Zone A which includes Pune, Bengaluru, and Hyderabad.",
+        "sub_question_id": "sq_2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that full-remote hiring is permitted in Zone A which includes Pune, Bengaluru, and Hyderabad."
+      },
+      {
+        "id": "claim2",
+        "text": "Full-remote hiring is permitted in Zone B which includes Jaipur, Chandigarh, and Kochi.",
+        "sub_question_id": "sq_2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that full-remote hiring is permitted in Zone B which includes Jaipur, Chandigarh, and Kochi."
+      },
+      {
+        "id": "claim3",
+        "text": "Full-remote hiring is permitted in Zone C which includes any Tier-2 city with a NimbusWorks-partnered coworking space.",
+        "sub_question_id": "sq_2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly states that full-remote hiring is permitted in Zone C which includes any Tier-2 city with a NimbusWorks-partnered coworking space."
+      },
+      {
+        "id": "claim4",
+        "text": "Current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space are Indore, Coimbatore, and Nagpur.",
+        "sub_question_id": "sq_2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly lists Indore, Coimbatore, and Nagpur as the current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2614,
-      "output_tokens": 984,
-      "total_tokens": 3598
+      "llm_calls": 7,
+      "input_tokens": 2940,
+      "output_tokens": 845,
+      "total_tokens": 3785
     },
     "judge": {
       "accuracy": "partial",
       "grounded": true,
-      "reasoning": "The agent correctly identified the approved cities for full-remote hiring from the remote work zones policy, but it failed to state the actual WFH eligibility criteria (such as tenure, rating, attendance violations, etc.) even though it mentioned that the policy outlines them."
+      "reasoning": "The agent correctly identified the approved cities for full-remote hiring based on the available claims, but completely failed to answer the first part of the question regarding the eligibility criteria for working from home, stating it could not be answered when that information was presumably expected or available. Therefore, accuracy is partial."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q09_run1.json"
   },
@@ -579,21 +1319,67 @@
     "category": "multi_hop",
     "run_index": 2,
     "run_id": "Q09_run2",
-    "final_answer": "The WFH policy outlines the eligibility criteria and guidelines for employees who wish to work from home on a regular or occasional basis (wfh_policy.md_chunk_1). Additionally, the WFH Policy (HR-WFH-001) governs how many days per week an existing, office-based employee may work from home (remote_work_zones.md_chunk_4). Full-remote hiring is permitted in Zone A, which includes Pune, Bengaluru, and Hyderabad, as well as in Zone B, which includes Jaipur, Chandigarh, and Kochi (remote_work_zones.md_chunk_2). Furthermore, full-remote hiring is permitted in Zone C, which includes any Tier-2 city with a NimbusWorks-partnered coworking space (remote_work_zones.md_chunk_2). The current Tier-2 cities with a NimbusWorks-partnered coworking space in Zone C are Indore, Coimbatore, and Nagpur (remote_work_zones.md_chunk_2).",
+    "final_answer": "Full-remote hiring is currently permitted in Zone A which includes Pune, Bengaluru, and Hyderabad (remote_work_zones.md_chunk_2), in Zone B which includes Jaipur, Chandigarh, and Kochi (remote_work_zones.md_chunk_2), and in Zone C which includes any Tier-2 city with a NimbusWorks-partnered coworking space (remote_work_zones.md_chunk_2). The current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space are Indore, Coimbatore, and Nagpur (remote_work_zones.md_chunk_2). Regarding the eligibility criteria for working from home, that could not be answered.",
     "refused": false,
-    "confidence": 1.0,
+    "confidence": 0.9,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Full-remote hiring is currently permitted in Zone A which includes Pune, Bengaluru, and Hyderabad.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that full-remote hiring is permitted in Zone A which includes Pune, Bengaluru, and Hyderabad."
+      },
+      {
+        "id": "claim2",
+        "text": "Full-remote hiring is currently permitted in Zone B which includes Jaipur, Chandigarh, and Kochi.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that full-remote hiring is permitted in Zone B which includes Jaipur, Chandigarh, and Kochi."
+      },
+      {
+        "id": "claim3",
+        "text": "Full-remote hiring is currently permitted in Zone C which includes any Tier-2 city with a NimbusWorks-partnered coworking space.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that Zone C includes any Tier-2 city with a NimbusWorks-partnered coworking space."
+      },
+      {
+        "id": "claim4",
+        "text": "Current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space are Indore, Coimbatore, and Nagpur.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly lists Indore, Coimbatore, and Nagpur as the current Tier-2 cities in Zone C."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2873,
-      "output_tokens": 1290,
-      "total_tokens": 4163
+      "input_tokens": 2574,
+      "output_tokens": 882,
+      "total_tokens": 3456
     },
     "judge": {
       "accuracy": "partial",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the approved cities for full-remote hiring from the claims available. However, it completely fails to answer the first part of the question regarding the specific eligibility criteria for working from home (such as 6 months employment, performance ratings, attendance violations, etc.), only mentioning vaguely that the policy outlines them. Therefore, accuracy is partial."
+      "reasoning": "The agent correctly and fully answered the second part of the question regarding approved cities for full-remote hiring, but completely failed to answer the first part regarding the eligibility criteria for working from home, stating it could not be answered. Because it got half of a multi-hop question correct and missed the other half, the accuracy is partial."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q09_run2.json"
   },
@@ -602,21 +1388,78 @@
     "category": "multi_hop",
     "run_index": 3,
     "run_id": "Q09_run3",
-    "final_answer": "The work from home policy outlines the eligibility criteria and guidelines for employees who wish to work from home on a regular or occasional basis (wfh_policy.md_chunk_1). Full-remote hiring is permitted in Zone A, which includes Pune, Bengaluru, and Hyderabad (remote_work_zones.md_chunk_2). It is also permitted in Zone B, which includes Jaipur, Chandigarh, and Kochi (remote_work_zones.md_chunk_2). Additionally, full-remote hiring is permitted in Zone C, which includes any Tier-2 city with a NimbusWorks-partnered coworking space (remote_work_zones.md_chunk_2). Current Tier-2 cities with a NimbusWorks-partnered coworking space in Zone C are Indore, Coimbatore, and Nagpur (remote_work_zones.md_chunk_2).",
+    "final_answer": "The WFH policy outlines eligibility criteria and guidelines for employees who wish to work from home on a regular or occasional basis (wfh_policy.md_chunk_1). Zone A approved for full-remote hiring includes Pune, Bengaluru, and Hyderabad (remote_work_zones.md_chunk_2). Zone B approved for full-remote hiring includes Jaipur, Chandigarh, and Kochi (remote_work_zones.md_chunk_2). Zone C approved for full-remote hiring includes any Tier-2 city with a NimbusWorks-partnered coworking space (remote_work_zones.md_chunk_2). Current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space are Indore, Coimbatore, and Nagpur (remote_work_zones.md_chunk_2).",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "The WFH policy outlines eligibility criteria and guidelines for employees who wish to work from home on a regular or occasional basis.",
+        "sub_question_id": "sq1",
+        "citations": [
+          "wfh_policy.md_chunk_1"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that the policy outlines eligibility criteria and guidelines for working from home on a regular or occasional basis."
+      },
+      {
+        "id": "claim2",
+        "text": "Zone A approved for full-remote hiring includes Pune, Bengaluru, and Hyderabad.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly lists Zone A as including Pune, Bengaluru, and Hyderabad."
+      },
+      {
+        "id": "claim3",
+        "text": "Zone B approved for full-remote hiring includes Jaipur, Chandigarh, and Kochi.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly lists Zone B as including Jaipur, Chandigarh, and Kochi."
+      },
+      {
+        "id": "claim4",
+        "text": "Zone C approved for full-remote hiring includes any Tier-2 city with a NimbusWorks-partnered coworking space.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that Zone C includes any Tier-2 city with a NimbusWorks-partnered coworking space."
+      },
+      {
+        "id": "claim5",
+        "text": "Current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space are Indore, Coimbatore, and Nagpur.",
+        "sub_question_id": "sq2",
+        "citations": [
+          "remote_work_zones.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence lists Indore, Coimbatore, and Nagpur as the current Tier-2 cities in Zone C with a NimbusWorks-partnered coworking space."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
-      "input_tokens": 2692,
-      "output_tokens": 1085,
-      "total_tokens": 3777
+      "input_tokens": 2670,
+      "output_tokens": 1076,
+      "total_tokens": 3746
     },
     "judge": {
       "accuracy": "partial",
       "grounded": true,
-      "reasoning": "The agent correctly identifies the approved cities for full-remote hiring and cites the remote work zones document properly. However, it completely misses the first part of the question regarding the eligibility criteria for working from home for existing office-based employees (6+ months tenure, performance rating, attendance violations, etc.). Therefore, the answer is only partially correct, though fully grounded in the available claims."
+      "reasoning": "The agent correctly identifies the cities approved for full-remote hiring across Zones A, B, and C, but completely omits the actual eligibility criteria for working from home (such as tenure, performance rating, and attendance violations), which was the first part of the question. Therefore, the accuracy is partial, but the claims made are fully grounded in the provided text."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q09_run3.json"
   },
@@ -629,17 +1472,41 @@
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Performance reviews are conducted twice a year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly confirms that performance reviews are conducted twice a year."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
       "input_tokens": 2029,
-      "output_tokens": 602,
-      "total_tokens": 2631
+      "output_tokens": 588,
+      "total_tokens": 2617
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identified both the casual leave entitlement (8 days per calendar year) and the frequency of performance reviews (twice a year) using the appropriate claims available."
+      "reasoning": "The agent correctly identifies both independent facts from their respective documents (8 days of casual leave per calendar year and performance reviews twice a year) and all claims are fully supported by the provided claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q10_run1.json"
   },
@@ -648,21 +1515,45 @@
     "category": "multi_hop",
     "run_index": 2,
     "run_id": "Q10_run2",
-    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v1.md_chunk_4, leave_policy_v2.md_chunk_4). Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2). Specifically, the H1 Review covers January through June and is conducted in July (performance_review_policy.md_chunk_2), while the H2 Review covers July through December and is conducted in January (performance_review_policy.md_chunk_2). Additionally, work-from-home (WFH) eligibility is reviewed every 6 months alongside the standard performance review cycle (wfh_policy.md_chunk_5).",
+    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year [leave_policy_v1.md_chunk_4]. Performance reviews are conducted twice a year [performance_review_policy.md_chunk_2].",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Performance reviews are conducted twice a year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly confirms that performance reviews are conducted twice a year."
+      }
+    ],
     "conflicts": [],
     "usage": {
-      "llm_calls": 7,
-      "input_tokens": 2825,
-      "output_tokens": 66633,
-      "total_tokens": 69458
+      "llm_calls": 6,
+      "input_tokens": 2029,
+      "output_tokens": 3541,
+      "total_tokens": 5570
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identifies both key facts: casual leave entitlement is 8 days per year, and performance reviews are conducted twice a year. All statements made by the agent are fully supported by the available claims."
+      "reasoning": "The agent correctly identified both independent facts (8 days of casual leave per calendar year and performance reviews twice a year) from their respective policies, matching the reference answer and using only valid claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q10_run2.json"
   },
@@ -671,21 +1562,45 @@
     "category": "multi_hop",
     "run_index": 3,
     "run_id": "Q10_run3",
-    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year (leave_policy_v1.md_chunk_4). Performance reviews are conducted twice a year (performance_review_policy.md_chunk_2).",
+    "final_answer": "Employees are entitled to 8 days of casual leave per calendar year [leave_policy_v1.md_chunk_4]. Performance reviews are conducted twice a year [performance_review_policy.md_chunk_2].",
     "refused": false,
     "confidence": 1.0,
     "retry_count": 0,
+    "claims": [
+      {
+        "id": "claim1",
+        "text": "Employees are entitled to 8 days of casual leave per calendar year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "leave_policy_v1.md_chunk_4"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence explicitly states that employees are entitled to 8 days of casual leave per calendar year."
+      },
+      {
+        "id": "claim2",
+        "text": "Performance reviews are conducted twice a year",
+        "sub_question_id": "sq1",
+        "citations": [
+          "performance_review_policy.md_chunk_2"
+        ],
+        "confidence": 1.0,
+        "verification_status": "SUPPORTED",
+        "verification_reason": "The cited evidence clearly confirms that performance reviews are conducted twice a year."
+      }
+    ],
     "conflicts": [],
     "usage": {
       "llm_calls": 6,
       "input_tokens": 2029,
-      "output_tokens": 69384,
-      "total_tokens": 71413
+      "output_tokens": 4324,
+      "total_tokens": 6353
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The agent correctly identified both independent facts from the two different policies: 8 days of casual leave per calendar year and performance reviews conducted twice a year. All claims trace directly back to the available claims."
+      "reasoning": "The agent correctly identified both independent facts from their respective documents (8 days of casual leave per calendar year and performance reviews twice a year) and all claims are fully grounded in the provided claims."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q10_run3.json"
   },
@@ -698,17 +1613,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
       "llm_calls": 4,
-      "input_tokens": 1345,
-      "output_tokens": 237,
-      "total_tokens": 1582
+      "input_tokens": 1355,
+      "output_tokens": 255,
+      "total_tokens": 1610
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The question is unanswerable based on the knowledge base, and the agent correctly stated it does not know without inventing any facts."
+      "reasoning": "The question is unanswerable based on the knowledge base, and the agent correctly stated that it does not know without inventing any facts."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q11_run1.json"
   },
@@ -721,17 +1637,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
       "llm_calls": 4,
-      "input_tokens": 1347,
-      "output_tokens": 271,
-      "total_tokens": 1618
+      "input_tokens": 1355,
+      "output_tokens": 255,
+      "total_tokens": 1610
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The question is unanswerable based on the knowledge base, and the agent correctly stated it does not know without inventing any facts or numbers."
+      "reasoning": "The question is unanswerable based on the knowledge base, and the agent correctly refused to answer without inventing any facts."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q11_run2.json"
   },
@@ -744,17 +1661,18 @@
     "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
       "llm_calls": 4,
       "input_tokens": 1347,
-      "output_tokens": 255,
-      "total_tokens": 1602
+      "output_tokens": 253,
+      "total_tokens": 1600
     },
     "judge": {
       "accuracy": "correct",
       "grounded": true,
-      "reasoning": "The question is unanswerable based on the knowledge base. The agent correctly identified that it doesn't know and refused to answer, stating no specific invented facts."
+      "reasoning": "The question is unanswerable based on the knowledge base, and the agent correctly recognized this and refused to answer without hallucinating any facts."
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q11_run3.json"
   },
@@ -763,21 +1681,22 @@
     "category": "unanswerable",
     "run_index": 1,
     "run_id": "Q12_run1",
-    "final_answer": null,
-    "refused": false,
+    "final_answer": "I don't know. This question requires information that isn't retrievable from the knowledge base, and I won't guess.",
+    "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 2,
-      "input_tokens": 571,
-      "output_tokens": 206,
-      "total_tokens": 777
+      "llm_calls": 3,
+      "input_tokens": 769,
+      "output_tokens": 218,
+      "total_tokens": 987
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The question is unanswerable, and the agent correctly refused to provide any specific headcount or invented facts."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 41.531285665s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '41s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q12_run1.json"
   },
@@ -786,21 +1705,22 @@
     "category": "unanswerable",
     "run_index": 2,
     "run_id": "Q12_run2",
-    "final_answer": null,
-    "refused": false,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 2,
-      "input_tokens": 571,
-      "output_tokens": 235,
-      "total_tokens": 806
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The question is unanswerable, and the agent correctly refused to provide any hallucinated information."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 28.062405417s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q12_run2.json"
   },
@@ -809,21 +1729,22 @@
     "category": "unanswerable",
     "run_index": 3,
     "run_id": "Q12_run3",
-    "final_answer": null,
-    "refused": false,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
     "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 2,
-      "input_tokens": 571,
-      "output_tokens": 155,
-      "total_tokens": 726
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The question is unanswerable, and the agent correctly refused to provide any information or hallucinate a headcount."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 10.010453357s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q12_run3.json"
   },
@@ -832,21 +1753,22 @@
     "category": "unanswerable",
     "run_index": 1,
     "run_id": "Q13_run1",
-    "final_answer": "Employment may be terminated during the probationary period with 15 days' written notice from either party (probation_policy.md_chunk_6). Regarding whether the resignation notice period changes or remains the same if a probation period is extended, this could not be answered.",
-    "refused": false,
-    "confidence": 0.9,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2058,
-      "output_tokens": 493,
-      "total_tokens": 2551
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "incorrect",
-      "grounded": true,
-      "reasoning": "The agent incorrectly applied the standard probation notice period to the unanswerable question about probation extensions, thereby hallucinating/assuming the rule carried over, which violates the strict rule for unanswerable questions."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 53.489776528s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '53s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q13_run1.json"
   },
@@ -855,21 +1777,22 @@
     "category": "unanswerable",
     "run_index": 2,
     "run_id": "Q13_run2",
-    "final_answer": "Employment may be terminated during the probationary period with 15 days' written notice from either party (probation_policy.md_chunk_6). Regarding the question of what the resignation notice period is if a probation period is extended, this could not be answered.",
-    "refused": false,
-    "confidence": 0.9,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2050,
-      "output_tokens": 487,
-      "total_tokens": 2537
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "incorrect",
-      "grounded": true,
-      "reasoning": "The question asks specifically about the notice period during an *extended* probation period. The agent incorrectly stated the standard 15-day probation notice rule and applied it, which violates the unanswerable category rule that strictly prohibits hallucinating or assuming a standard figure carries over when the policy does not address the extension."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 36.320008379s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q13_run2.json"
   },
@@ -878,21 +1801,22 @@
     "category": "unanswerable",
     "run_index": 3,
     "run_id": "Q13_run3",
-    "final_answer": "Employment may be terminated during the probationary period with 15 days' written notice from either party [probation_policy.md_chunk_6]. Regarding whether the resignation notice period changes if a probation period is extended, this could not be answered.",
-    "refused": false,
-    "confidence": 0.9,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2048,
-      "output_tokens": 484,
-      "total_tokens": 2532
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "partial",
-      "grounded": true,
-      "reasoning": "The agent correctly identified that the specific case of an extended probation period could not be answered, but it incorrectly stated the 15 days notice period as applying to the standard probationary period when the question specifically asked about the extension. Per the unanswerable category rules, stating specific facts for unanswerable aspects makes it at best partial if it hedges, but here it stated the 15-day rule which the reference explicitly warns against carrying over blindly."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 17.556613403s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '17s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q13_run3.json"
   },
@@ -901,28 +1825,22 @@
     "category": "contradictory",
     "run_index": 1,
     "run_id": "Q14_run1",
-    "final_answer": "There is a conflict regarding the number of paid sick leave days employees are entitled to per calendar year. According to leave_policy_v1.md_chunk_3, employees are entitled to 10 days of paid sick leave per calendar year [leave_policy_v1.md_chunk_3]. However, leave_policy_v2.md_chunk_3 states that employees are entitled to 12 days of paid sick leave per calendar year [leave_policy_v2.md_chunk_3].",
-    "refused": false,
-    "confidence": 0.85,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
-    "conflicts": [
-      {
-        "topic": "How many days of paid sick leave am I entitled to per year?",
-        "doc_a": "leave_policy_v1.md_chunk_3",
-        "doc_b": "leave_policy_v2.md_chunk_3",
-        "description": "\"Employees are entitled to 10 days of paid sick leave per calendar year.\" (citing leave_policy_v1.md_chunk_3) vs. \"Employees are entitled to 12 days of paid sick leave per calendar year.\" (citing leave_policy_v2.md_chunk_3)"
-      }
-    ],
+    "claims": [],
+    "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2180,
-      "output_tokens": 955,
-      "total_tokens": 3135
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction, stated both conflicting values (10 days and 12 days), and attributed both values to their respective sources (leave_policy_v1.md and leave_policy_v2.md) as required by the contradictory category grading rules. All claims made in the answer are fully grounded in the provided claims."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 3.508580343s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q14_run1.json"
   },
@@ -931,21 +1849,22 @@
     "category": "contradictory",
     "run_index": 2,
     "run_id": "Q14_run2",
-    "final_answer": "Regarding paid sick leave, employees are entitled to 10 days of paid sick leave per calendar year according to the first policy version. (leave_policy_v1.md_chunk_3) However, employees are entitled to 12 days of paid sick leave per calendar year according to the second policy version. (leave_policy_v2.md_chunk_3)",
-    "refused": false,
-    "confidence": 1.0,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
+    "claims": [],
     "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2140,
-      "output_tokens": 66199,
-      "total_tokens": 68339
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction by explicitly stating both conflicting values (10 days and 12 days) and citing both respective policy sources (leave_policy_v1.md and leave_policy_v2.md), perfectly matching the reference answer."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 44.737574925s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '44s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q14_run2.json"
   },
@@ -954,28 +1873,22 @@
     "category": "contradictory",
     "run_index": 3,
     "run_id": "Q14_run3",
-    "final_answer": "Regarding the entitlement to paid sick leave per calendar year, there is a conflict between the policies: leave_policy_v1.md_chunk_3 states that employees are entitled to 10 days of paid sick leave per calendar year, whereas leave_policy_v2.md_chunk_3 states that employees are entitled to 12 days of paid sick leave per calendar year.",
-    "refused": false,
-    "confidence": 0.85,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
-    "conflicts": [
-      {
-        "topic": "What is the annual entitlement for paid sick leave?",
-        "doc_a": "leave_policy_v1.md_chunk_3",
-        "doc_b": "leave_policy_v2.md_chunk_3",
-        "description": "\"Employees are entitled to 10 days of paid sick leave per calendar year.\" (citing leave_policy_v1.md_chunk_3) vs. \"Employees are entitled to 12 days of paid sick leave per calendar year.\" (citing leave_policy_v2.md_chunk_3)"
-      }
-    ],
+    "claims": [],
+    "conflicts": [],
     "usage": {
-      "llm_calls": 5,
-      "input_tokens": 1811,
-      "output_tokens": 541,
-      "total_tokens": 2352
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction by stating both conflicting values (10 days and 12 days) and citing both sources (leave_policy_v1.md_chunk_3 and leave_policy_v2.md_chunk_3), matching the requirements for a contradictory question."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 28.070135527s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q14_run3.json"
   },
@@ -984,28 +1897,22 @@
     "category": "contradictory",
     "run_index": 1,
     "run_id": "Q15_run1",
-    "final_answer": "Regarding the standard probationary period, there is a conflict in the company documentation: probation_policy.md_chunk_2 states that the standard probationary period for all new hires is 3 months from the date of joining (probation_policy.md_chunk_2), whereas onboarding_checklist.md_chunk_6 states that the standard probationary period at NimbusWorks is 6 months from the date of joining (onboarding_checklist.md_chunk_6).",
-    "refused": false,
-    "confidence": 0.85,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
-    "conflicts": [
-      {
-        "topic": "What is the standard probationary period length for new hires?",
-        "doc_a": "probation_policy.md_chunk_2",
-        "doc_b": "onboarding_checklist.md_chunk_6",
-        "description": "\"The standard probationary period for all new hires is 3 months from the date of joining.\" (citing probation_policy.md_chunk_2) vs. \"The standard probationary period at NimbusWorks is 6 months from the date of joining.\" (citing onboarding_checklist.md_chunk_6)"
-      }
-    ],
+    "claims": [],
+    "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2141,
-      "output_tokens": 649,
-      "total_tokens": 2790
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction, stated both conflicting values (3 months and 6 months), and cited both sources correctly according to the reference answer."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 16.924751492s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q15_run1.json"
   },
@@ -1014,28 +1921,22 @@
     "category": "contradictory",
     "run_index": 2,
     "run_id": "Q15_run2",
-    "final_answer": "Regarding the standard probationary period, there is a conflict in the company documentation: probation_policy.md_chunk_2 states that the standard probationary period for all new hires is 3 months from the date of joining (probation_policy.md_chunk_2), whereas onboarding_checklist.md_chunk_6 states that the standard probationary period at NimbusWorks is 6 months from the date of joining (onboarding_checklist.md_chunk_6).",
-    "refused": false,
-    "confidence": 0.85,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
-    "conflicts": [
-      {
-        "topic": "What is the standard probationary period length for new hires?",
-        "doc_a": "probation_policy.md_chunk_2",
-        "doc_b": "onboarding_checklist.md_chunk_6",
-        "description": "\"The standard probationary period for all new hires is 3 months from the date of joining.\" (citing probation_policy.md_chunk_2) vs. \"The standard probationary period at NimbusWorks is 6 months from the date of joining.\" (citing onboarding_checklist.md_chunk_6)"
-      }
-    ],
+    "claims": [],
+    "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2141,
-      "output_tokens": 605,
-      "total_tokens": 2746
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction, stated both conflicting values (3 months and 6 months), and cited both sources as required by the contradictory category grading rules."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 3.759465764s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q15_run2.json"
   },
@@ -1044,28 +1945,22 @@
     "category": "contradictory",
     "run_index": 3,
     "run_id": "Q15_run3",
-    "final_answer": "Regarding the standard probationary period, there is a conflict in the company documentation: probation_policy.md_chunk_2 states that the standard probationary period for all new hires is 3 months from the date of joining [probation_policy.md_chunk_2], whereas onboarding_checklist.md_chunk_6 states that the standard probationary period at NimbusWorks is 6 months from the date of joining [onboarding_checklist.md_chunk_6].",
-    "refused": false,
-    "confidence": 0.85,
+    "final_answer": "I don't know. No verified evidence was found to answer this question.",
+    "refused": true,
+    "confidence": 0.0,
     "retry_count": 0,
-    "conflicts": [
-      {
-        "topic": "What is the standard length of the probationary period for new hires?",
-        "doc_a": "probation_policy.md_chunk_2",
-        "doc_b": "onboarding_checklist.md_chunk_6",
-        "description": "\"The standard probationary period for all new hires is 3 months from the date of joining.\" (citing probation_policy.md_chunk_2) vs. \"The standard probationary period at NimbusWorks is 6 months from the date of joining.\" (citing onboarding_checklist.md_chunk_6)"
-      }
-    ],
+    "claims": [],
+    "conflicts": [],
     "usage": {
-      "llm_calls": 6,
-      "input_tokens": 2143,
-      "output_tokens": 604,
-      "total_tokens": 2747
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
     },
     "judge": {
-      "accuracy": "correct",
-      "grounded": true,
-      "reasoning": "The agent correctly identified the contradiction by stating both conflicting values (3 months and 6 months) and explicitly citing both source documents (probation_policy.md and onboarding_checklist.md). All claims are fully grounded in the provided claims list."
+      "accuracy": null,
+      "grounded": null,
+      "reasoning": "Judge failed: Error calling model 'gemini-flash-lite-latest' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite\\nPlease retry in 46.269457334s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '500'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
     },
     "trace_path": "C:\\Users\\khush\\OneDrive\\Desktop\\Zettabolt_assignmnet\\src\\..\\traces\\Q15_run3.json"
   }

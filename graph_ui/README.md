@@ -16,8 +16,11 @@ Supports both graph modes from one flow:
 
 Backend (from repo root, same env as `main.py`):
 ```
-uvicorn graph_ui.backend.main:app --reload --port 8002
+uvicorn graph_ui.backend.main:app --reload --port 8003
 ```
+(Port 8003, not 8002 or 8001 -- both got stuck with an orphaned listening socket on Windows that
+no tool could kill. If you change `.env` while the backend is already running, restart it --
+`--reload` only watches `.py` files, not `.env`, so it won't pick up a new API key on its own.)
 
 Frontend:
 ```

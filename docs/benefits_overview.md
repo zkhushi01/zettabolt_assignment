@@ -4,6 +4,8 @@
 **Department:** Human Resources
 **Status:** Active
 
+bge-base-en-v1.5
+
 ## 1. Health Insurance
 All full-time employees are covered under the group health insurance plan underwritten by **SecureLife Insurance Co.**, effective from the date of joining. Coverage includes the employee and up to 4 dependents (spouse, up to 2 children, and one parent).
 

@@ -2,18 +2,20 @@
   "n_total_runs": 45,
   "n_errored_runs": 0,
   "overall_accuracy": 0.833,
-  "overall_groundedness": 0.978,
-  "hallucination_rate": 0.022,
-  "correct_abstention_rate": 0.333,
-  "consistency_rate": 0.867,
-  "inconsistent_question_ids": [
-    "Q03",
-    "Q13"
-  ],
+  "overall_groundedness": 1.0,
+  "hallucination_rate": 0.0,
+  "correct_abstention_rate": 1.0,
+  "consistency": {
+    "exact_answer_match_rate": 0.4,
+    "verdict_match_rate": 0.933,
+    "inconsistent_question_ids": [
+      "Q03"
+    ]
+  },
   "per_category": {
     "contradictory": {
       "n_runs": 6,
-      "accuracy": 1.0,
+      "accuracy": 0.0,
       "groundedness": 1.0
     },
     "multi_hop": {
@@ -23,20 +25,20 @@
     },
     "single_doc": {
       "n_runs": 18,
-      "accuracy": 0.806,
-      "groundedness": 0.944
+      "accuracy": 0.778,
+      "groundedness": 1.0
     },
     "unanswerable": {
       "n_runs": 9,
-      "accuracy": 0.722,
+      "accuracy": 1.0,
       "groundedness": 1.0
     }
   },
   "cost": {
-    "total_llm_calls": 245,
-    "total_tokens": 327359,
-    "avg_llm_calls_per_question_run": 5.44,
-    "avg_tokens_per_question_run": 7274.6
+    "total_llm_calls": 184,
+    "total_tokens": 106668,
+    "avg_llm_calls_per_question_run": 4.09,
+    "avg_tokens_per_question_run": 2370.4
   },
   "errored_run_ids": []
 }
