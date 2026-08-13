@@ -14,6 +14,13 @@ A sub-question with zero evidence (see state.unanswered_sub_questions) is
 never sent to the LLM at all -- no evidence in, no claim out, so the system
 can't fabricate an answer just because it "sounds right" from parametric
 knowledge.
+
+Also reachable on a retry (Router's retry_research or rewrite_answer
+decision). Router already strips the stale claims for whichever
+sub-questions are being redone before routing here, so this node only ever
+needs to ask "which sub-questions have no claim yet" -- it never needs to
+know *why* they don't, or re-spend a call re-synthesising a sub-question
+that already has a surviving claim from an earlier pass.
 """
 
 from collections import defaultdict
@@ -45,8 +52,12 @@ Rules:
 
 
 def synthesiser_node(state: AgentState) -> dict:
+    already_covered = {c.sub_question_id for c in state.claims}
+
     evidence_by_sub_question = defaultdict(list)
     for ev in state.evidence:
+        if ev.sub_question_id in already_covered:
+            continue
         evidence_by_sub_question[ev.sub_question_id].append(ev)
 
     sub_question_text = {sq.id: sq.text for sq in state.sub_questions}
