@@ -59,7 +59,7 @@ def _ask_or_record_assumption(state: AgentState, question: str, reason: str, fal
             # consistently, rather than only counting the interactive branch.
             "clarification_rounds": state.clarification_rounds + 1,
         }
-
+ 
     # Interactive and under the cap: actually pause the graph and ask.
     user_reply = interrupt({"clarifying_question": question})
     combined = f"{state.clarified_question or state.raw_question}\n(clarification: {user_reply})"
