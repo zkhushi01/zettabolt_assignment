@@ -33,6 +33,7 @@ from src.graph import build_graph
 from src.llm import LLMConfigError
 from src.retrieval import RetrievalError
 from src.state import AgentState
+from src.tracing import save_run_trace
 
 app = FastAPI(title="Research Desk -- Agent Graph UI")
 
@@ -70,6 +71,7 @@ class RunResponse(BaseModel):
     steps: list[StepOut]
     clarifying_question: str | None = None
     state: dict | None = None
+    trace_path: str | None = None
 
 
 def _drain(stream) -> tuple[list[StepOut], str | None]:
@@ -77,10 +79,10 @@ def _drain(stream) -> tuple[list[StepOut], str | None]:
     Consumes a graph.stream(..., stream_mode="updates") iterator into a
     frontend-friendly shape: one StepOut per node that actually ran, in
     order, plus the interrupt payload if the run paused instead of
-    finishing. This -- not a separate trace system -- is what lets the UI
-    show one card per node: state.trace exists in the schema but no node
-    writes to it yet, while stream_mode="updates" already gives the real
-    per-node output for free.
+    finishing. This is what the UI renders live, one card per node;
+    state.trace (src/tracing.py) is the persisted equivalent written to
+    traces/ once a run finishes, for the eval harness/audit trail rather
+    than the live view.
     """
     steps: list[StepOut] = []
     interrupt_question: str | None = None
@@ -97,8 +99,10 @@ def _build_response(thread_id: str, steps: list[StepOut], interrupt_question: st
     if interrupt_question is not None:
         return RunResponse(thread_id=thread_id, status="interrupted", steps=steps, clarifying_question=interrupt_question)
     snapshot = _graph.get_state({"configurable": {"thread_id": thread_id}})
-    final_state = jsonable_encoder(AgentState.model_validate(snapshot.values).model_dump())
-    return RunResponse(thread_id=thread_id, status="done", steps=steps, state=final_state)
+    validated_state = AgentState.model_validate(snapshot.values)
+    trace_path = save_run_trace(validated_state, thread_id)
+    final_state = jsonable_encoder(validated_state.model_dump())
+    return RunResponse(thread_id=thread_id, status="done", steps=steps, state=final_state, trace_path=trace_path)
 
 
 @app.post("/api/run", response_model=RunResponse)

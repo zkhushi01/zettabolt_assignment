@@ -16,7 +16,7 @@ Supports both graph modes from one flow:
 
 Backend (from repo root, same env as `main.py`):
 ```
-uvicorn graph_ui.backend.main:app --reload --port 8001
+uvicorn graph_ui.backend.main:app --reload --port 8002
 ```
 
 Frontend:

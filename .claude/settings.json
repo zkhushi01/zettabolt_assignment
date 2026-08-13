@@ -3,7 +3,27 @@
     "allow": [
       "Bash(curl -s -o /dev/null -w \"backend\\(8001\\): %{http_code}\\\\n\" http://127.0.0.1:8001/api/topology)",
       "Bash(curl -s -o /dev/null -w \"graph_ui frontend\\(5174\\): %{http_code}\\\\n\" http://localhost:5174/)",
-      "Bash(curl -sv http://127.0.0.1:8001/api/topology)"
+      "Bash(curl -sv http://127.0.0.1:8001/api/topology)",
+      "Bash(python -c ' *)",
+      "Bash(curl -s -o /dev/null -w \"backend\\(8001\\) before restart: %{http_code}\\\\n\" http://127.0.0.1:8001/api/topology)",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 8001 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }')",
+      "Bash(curl -s -o /dev/null -w \"backend\\(8001\\) after kill: %{http_code}\\\\n\" http://127.0.0.1:8001/api/topology)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 8001 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Write-Output \"Killing PID $_\"; Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue })",
+      "PowerShell(Get-NetTCPConnection -LocalPort 8001 -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Process -Id 17896 -ErrorAction SilentlyContinue)",
+      "Bash(netstat -ano)",
+      "PowerShell(try { $p = Get-Process -Id 17896 -ErrorAction Stop; Write-Output \"EXISTS: $\\($p.ProcessName\\) $\\($p.Path\\)\" } catch { Write-Output \"NOT FOUND: $\\($_.Exception.Message\\)\" })",
+      "Bash(python main.py \"what is it?\" --non-interactive)",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/run -H \"Content-Type: application/json\" -d '{\"question\":\"What is the probation period?\",\"interactive\":false}')",
+      "Bash(taskkill //F //PID 17896)",
+      "Bash(uvicorn graph_ui.backend.main:app --reload --port 8002)",
+      "Bash(curl -s -o /dev/null -w \"backend\\(8002\\): %{http_code}\\\\n\" http://127.0.0.1:8002/api/topology)",
+      "Bash(curl -s -X POST http://127.0.0.1:8002/api/run -H \"Content-Type: application/json\" -d '{\"question\":\"What is the probation period?\",\"interactive\":false}')",
+      "Bash(taskkill //F //PID 13296)",
+      "Bash(curl -s -o /dev/null -w \"frontend\\(5174\\): %{http_code}\\\\n\" http://localhost:5174/)",
+      "Bash(curl -s http://localhost:5174/api/topology -o /dev/null -w \"proxy to backend: %{http_code}\\\\n\")",
+      "Bash(python -m eval.run_eval)",
+      "Bash(grep -E \"^Q[0-9]+_run[0-9]+\\\\.json$\")"
     ]
   }
 }

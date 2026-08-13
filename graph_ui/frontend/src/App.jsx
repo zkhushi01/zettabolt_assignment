@@ -6,7 +6,14 @@ mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
 // Node ids as declared in src/graph.py's graph.add_node(...) calls -- kept
 // here only to know which mermaid node ids to highlight as "done", not to
 // duplicate the graph's actual wiring (that comes from /api/topology).
-const GRAPH_NODE_IDS = ['clarifier', 'planner', 'researcher', 'synthesiser']
+const GRAPH_NODE_IDS = ['clarifier', 'planner', 'researcher', 'synthesiser', 'verifier', 'router', 'finaliser']
+
+const VERDICT_TONE = {
+  SUPPORTED: 'green',
+  CONTRADICTED: 'red',
+  UNSUPPORTED: 'amber',
+  CONFLICTING_SOURCES: 'purple',
+}
 
 function TopologyDiagram({ baseMermaid, doneNodes }) {
   const containerRef = useRef(null)
@@ -167,7 +174,90 @@ function SynthesiserCard({ update }) {
   )
 }
 
-const NODE_CARDS = { clarifier: ClarifierCard, planner: PlannerCard, researcher: ResearcherCard, synthesiser: SynthesiserCard }
+function VerdictRow({ claim }) {
+  return (
+    <li className="rounded-lg border border-neutral-200 p-3 dark:border-neutral-800">
+      <div className="mb-2 flex flex-wrap items-center gap-2 text-xs">
+        <Badge tone={VERDICT_TONE[claim.verification_status] ?? 'neutral'}>{claim.verification_status}</Badge>
+        <Badge tone="purple">{claim.sub_question_id}</Badge>
+        <span className="font-mono text-neutral-400">{claim.id}</span>
+      </div>
+      <p className="text-sm text-neutral-800 dark:text-neutral-200">{claim.text}</p>
+      {claim.verification_reason && (
+        <p className="mt-1 text-xs text-neutral-500">{claim.verification_reason}</p>
+      )}
+    </li>
+  )
+}
+
+function VerifierCard({ update }) {
+  if (!update.claims?.length) return <p className="text-sm text-neutral-500">Nothing new to verify.</p>
+  return (
+    <ul className="space-y-2">
+      {update.claims.map((claim) => (
+        <VerdictRow key={claim.id} claim={claim} />
+      ))}
+    </ul>
+  )
+}
+
+const ROUTER_TONE = { finish: 'green', retry_research: 'amber', rewrite_answer: 'amber' }
+
+function RouterCard({ update }) {
+  return (
+    <div className="space-y-2 text-sm">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge tone={ROUTER_TONE[update.router_decision] ?? 'neutral'}>{update.router_decision}</Badge>
+        {typeof update.retry_count === 'number' && <Badge>retry_count: {update.retry_count}</Badge>}
+      </div>
+      {update.retry_sub_question_ids?.length > 0 && (
+        <p className="text-neutral-600 dark:text-neutral-400">
+          Retrying with a reformulated search: {update.retry_sub_question_ids.join(', ')}
+        </p>
+      )}
+    </div>
+  )
+}
+
+function FinaliserCard({ update }) {
+  return (
+    <div className="space-y-3">
+      {update.refused && (
+        <div className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          {update.final_answer}
+        </div>
+      )}
+      {!update.refused && update.final_answer && (
+        <div className="rounded-md border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-green-200">
+          {update.final_answer}
+        </div>
+      )}
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <Badge>confidence: {update.confidence}</Badge>
+      </div>
+      {update.conflicts?.length > 0 && (
+        <div className="text-sm">
+          <span className="font-medium">Conflicts surfaced:</span>
+          <ul className="mt-1 list-inside list-disc text-neutral-600 dark:text-neutral-400">
+            {update.conflicts.map((c, i) => (
+              <li key={i}>{c.description}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
+const NODE_CARDS = {
+  clarifier: ClarifierCard,
+  planner: PlannerCard,
+  researcher: ResearcherCard,
+  synthesiser: SynthesiserCard,
+  verifier: VerifierCard,
+  router: RouterCard,
+  finaliser: FinaliserCard,
+}
 
 function StepCard({ step, index }) {
   const Card = NODE_CARDS[step.node]
@@ -276,8 +366,9 @@ function App() {
       <div className="mx-auto max-w-3xl px-6 py-10">
         <h1 className="text-2xl font-semibold">Research Desk &mdash; Agent Graph</h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          Runs Clarifier &rarr; Planner &rarr; Researcher &rarr; Synthesiser one node at a
-          time so each node's actual output can be checked, in either interactive (asks a
+          Runs Clarifier &rarr; Planner &rarr; Researcher &rarr; Synthesiser &rarr; Verifier &rarr;
+          Router &rarr; Finaliser one node at a time (with Router able to loop back for a capped
+          retry) so each node's actual output can be checked, in either interactive (asks a
           follow-up in the browser) or non-interactive (auto-assumes) mode.
         </p>
 
@@ -365,6 +456,10 @@ function App() {
               <dd>{String(finalState.retrieval_needed)}</dd>
               <dt className="text-neutral-500">Refused</dt>
               <dd>{String(finalState.refused)}</dd>
+              <dt className="text-neutral-500">Retries used</dt>
+              <dd>{finalState.retry_count} / {finalState.max_retries}</dd>
+              <dt className="text-neutral-500">Confidence</dt>
+              <dd>{finalState.confidence}</dd>
               {finalState.final_answer && (
                 <>
                   <dt className="text-neutral-500">Final answer</dt>
@@ -372,6 +467,11 @@ function App() {
                 </>
               )}
             </dl>
+            {finalState.trace?.length > 0 && (
+              <p className="mt-2 text-xs text-neutral-500">
+                Full trace ({finalState.trace.length} node executions) saved server-side to traces/{threadId}.json
+              </p>
+            )}
             <button
               type="button"
               onClick={() => setShowRaw((v) => !v)}
