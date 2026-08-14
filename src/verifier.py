@@ -19,7 +19,7 @@ that already survived a prior pass isn't re-spent on again after a retry,
 matching how Researcher/Synthesiser only redo the sub-questions that failed.
 """
 
-from src.llm import get_llm
+from src.llm import safe_structured_invoke
 from src.state import AgentState, VerifierOutput
 
 _SYSTEM_PROMPT = """You are the Verifier for an internal HR-policy Q&A agent.
@@ -59,11 +59,15 @@ def verifier_node(state: AgentState) -> dict:
         for c in to_verify
     )
 
-    llm = get_llm()
-    result: VerifierOutput = llm.with_structured_output(VerifierOutput).invoke([
-        ("system", _SYSTEM_PROMPT),
-        ("human", claims_block),
-    ])
+    # Fallback on unparseable output is an empty verdict list -- every claim
+    # in to_verify then naturally falls into the "model omitted this claim"
+    # branch below, which already fails safe to UNSUPPORTED rather than
+    # silently leaving verification_status at None.
+    result: VerifierOutput = safe_structured_invoke(
+        VerifierOutput,
+        [("system", _SYSTEM_PROMPT), ("human", claims_block)],
+        fallback=lambda err: VerifierOutput(verdicts=[]),
+    )
     verdict_by_claim_id = {v.claim_id: v for v in result.verdicts}
 
     # Build updates only for the claims actually sent (to_verify), then apply

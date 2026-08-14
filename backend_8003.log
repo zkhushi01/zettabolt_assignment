@@ -4,3 +4,6 @@ INFO:     Started reloader process [16368] using WatchFiles
 INFO:     Started server process [7368]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:61452 - "GET /api/topology HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59139 - "GET /api/topology HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59141 - "GET /api/topology HTTP/1.1" 200 OK

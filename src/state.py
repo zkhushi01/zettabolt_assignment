@@ -117,12 +117,23 @@ class ReformulatedQuery(BaseModel):
     query: str
 
 
-# Finaliser's only LLM call: rephrase already-verified claims into prose.
+# Finaliser's main LLM call: rephrase already-verified claims into prose.
 # Deliberately just one field -- confidence is computed in code from the
 # claims/conflicts/gaps Finaliser already has (see src/finaliser.py), not
 # asked of the model, since that's arithmetic over known data, not judgment.
 class FinaliserOutput(BaseModel):
     answer: str
+
+
+# Finaliser's OTHER LLM call, used only when Planner decided no retrieval was
+# needed (retrieval_needed=False) -- there's no evidence/claims pool to work
+# from here, so this is a distinct, narrower judgment call: "can this
+# question genuinely be answered with no domain lookup at all (definitional/
+# meta), or does answering it actually require a specific fact this system
+# has no business guessing?" See src/finaliser.py's _answer_without_retrieval.
+class DirectAnswerOutput(BaseModel):
+    can_answer_without_retrieval: bool
+    answer: Optional[str] = None
 
 
 # ---- Top-level state ----
