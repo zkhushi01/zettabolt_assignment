@@ -13,7 +13,7 @@ of generating a second, possibly different clarifying question.
 
 from langgraph.types import interrupt
 
-from src.llm import get_llm
+from src.llm import safe_structured_invoke
 from src.state import AgentState, ClarifierOutput
 
 _SYSTEM_PROMPT = """You are the Clarifier for an internal HR-policy Q&A agent.
@@ -83,11 +83,15 @@ def clarifier_node(state: AgentState) -> dict:
             fallback_question=state.clarified_question or state.raw_question,
         )
 
-    llm = get_llm()
-    result: ClarifierOutput = llm.with_structured_output(ClarifierOutput).invoke([
-        ("system", _SYSTEM_PROMPT),
-        ("human", state.raw_question),
-    ])
+    result: ClarifierOutput = safe_structured_invoke(
+        ClarifierOutput,
+        [("system", _SYSTEM_PROMPT), ("human", state.raw_question)],
+        fallback=lambda err: ClarifierOutput(
+            needs_clarification=False,
+            clarified_question=state.raw_question,
+            reason=f"Clarifier LLM output could not be parsed after retry ({err}); proceeding with the raw question unchanged rather than blocking the run.",
+        ),
+    )
 
     if not result.needs_clarification:
         return {
