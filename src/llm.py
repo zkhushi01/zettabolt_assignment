@@ -110,3 +110,33 @@ def get_usage_snapshot() -> dict:
         "output_tokens": tracker.output_tokens,
         "total_tokens": tracker.total_tokens,
     }
+
+
+# ---- Structured output with invalid-JSON handling ----
+# Hard requirement: every structured LLM call must handle the model
+# returning something that doesn't validate against its schema. Before this,
+# only Planner had any such handling, and only for a *semantic* failure
+# (retrieval_needed=True with zero sub_questions) -- an actual malformed/
+# truncated response from any node would have raised an uncaught exception
+# straight out of that node and crashed the whole run. This is the one
+# generic safety net every node's LLM call goes through instead.
+
+def safe_structured_invoke(schema: type, messages: list, fallback, temperature: float = DEFAULT_TEMPERATURE):
+    """
+    Invokes get_llm(temperature).with_structured_output(schema) with one
+    retry, then calls fallback(last_exception) to produce a safe default
+    instance of `schema` if both attempts fail to parse. Exceptions are
+    caught broadly on purpose: a malformed response can surface as a JSON
+    decode error, a Pydantic ValidationError, or a provider-specific parsing
+    error depending on the LangChain version/provider, and all three mean
+    the same thing here -- "this response didn't parse," not "this specific
+    error type occurred."
+    """
+    structured_llm = get_llm(temperature).with_structured_output(schema)
+    last_err: Exception | None = None
+    for _ in range(2):
+        try:
+            return structured_llm.invoke(messages)
+        except Exception as err:  # noqa: BLE001 -- see docstring
+            last_err = err
+    return fallback(last_err)

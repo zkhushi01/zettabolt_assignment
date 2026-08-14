@@ -3,17 +3,28 @@ graph.py
 Wires the nodes into a LangGraph StateGraph:
 
   Clarifier -> Planner -> Researcher -> Synthesiser -> Verifier -> Router
-                  ^ (still_ambiguous,           ^                    |
-                     interactive)               '-- Router: rewrite_answer --'
-                                                                      |
-                                          Router: retry_research -> Researcher
-                                                                      |
-                                                Router: finish -> Finaliser -> END
+                  |  ^ (still_ambiguous,        ^                    |
+                  |     interactive)            '-- Router: rewrite_answer --'
+                  |                                                  |
+                  |                     Router: retry_research -> Researcher
+                  |                                                  |
+                  |                           Router: finish -> Finaliser -> END
+                  |                                                    ^
+                  '-- retrieval_needed=False (no evidence pipeline) ---'
 
 Router is the graph's one required real cycle: Verifier -> Router can send
 control back to Researcher (new evidence needed) or Synthesiser (same
 evidence, re-synthesise), capped by state.max_retries so it provably
 terminates (see src/router.py).
+
+Planner's retrieval_needed=False path goes to Finaliser too, not straight to
+END -- Finaliser has a separate branch for this (src/finaliser.py's
+_answer_without_retrieval) that either answers a purely definitional
+question directly or refuses. This used to dead-end at END with no output at
+all; the eval harness caught it doing exactly that on a real question
+("how many employees does the company have" -- correctly judged as not
+needing retrieval, but then nothing existed downstream to answer or refuse
+it), so every path now reaches an actual final_answer or an honest refusal.
 
 Checkpointed with InMemorySaver so Clarifier's `interrupt()` calls can pause
 mid-run and resume later with the same thread_id -- required for interactive
@@ -58,10 +69,9 @@ def _route_after_planner(state: AgentState) -> str:
         return "clarifier"
     if state.retrieval_needed:
         return "researcher"
-    # retrieval_needed == False: Finaliser only knows how to work from a
-    # verified claim set, and there isn't one here (no retrieval happened),
-    # so this path just stops -- same as before Finaliser existed.
-    return END
+    # retrieval_needed == False: Finaliser's _answer_without_retrieval branch
+    # handles this -- answer directly if genuinely definitional, else refuse.
+    return "finaliser"
 
 
 def _route_after_researcher(state: AgentState) -> str:
@@ -98,7 +108,7 @@ def build_graph():
     graph.add_edge(START, "clarifier")
     graph.add_conditional_edges("clarifier", _route_after_clarifier, {"planner": "planner"})
     graph.add_conditional_edges(
-        "planner", _route_after_planner, {"clarifier": "clarifier", "researcher": "researcher", END: END}
+        "planner", _route_after_planner, {"clarifier": "clarifier", "researcher": "researcher", "finaliser": "finaliser"}
     )
     graph.add_conditional_edges("researcher", _route_after_researcher, {"synthesiser": "synthesiser", END: END})
     graph.add_edge("synthesiser", "verifier")
