@@ -228,7 +228,7 @@ function FinaliserCard({ update }) {
         </div>
       )}
       {!update.refused && update.final_answer && (
-        <div className="rounded-md border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-green-200">
+        <div className="whitespace-pre-line rounded-md border border-green-300 bg-green-50 px-3 py-2 text-sm text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-green-200">
           {update.final_answer}
         </div>
       )}
@@ -283,7 +283,6 @@ function StepCard({ step, index }) {
 function App() {
   const [baseMermaid, setBaseMermaid] = useState(null)
   const [question, setQuestion] = useState('')
-  const [interactive, setInteractive] = useState(true)
   const [threadId, setThreadId] = useState(null)
   const [steps, setSteps] = useState([])
   const [status, setStatus] = useState('idle') // idle | interrupted | done
@@ -327,7 +326,7 @@ function App() {
       const res = await fetch('/api/run', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, interactive }),
+        body: JSON.stringify({ question, interactive: true }),
       })
       if (!res.ok) throw new Error((await res.json().catch(() => ({}))).detail || `Request failed (${res.status})`)
       applyResponse(await res.json())
@@ -368,8 +367,8 @@ function App() {
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
           Runs Clarifier &rarr; Planner &rarr; Researcher &rarr; Synthesiser &rarr; Verifier &rarr;
           Router &rarr; Finaliser one node at a time (with Router able to loop back for a capped
-          retry) so each node's actual output can be checked, in either interactive (asks a
-          follow-up in the browser) or non-interactive (auto-assumes) mode.
+          retry) so each node's actual output can be checked. Clarifier always asks a follow-up
+          in the browser when it needs one, instead of guessing.
         </p>
 
         <div className="mt-6 rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
@@ -388,15 +387,7 @@ function App() {
             rows={2}
             className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
           />
-          <div className="flex items-center justify-between">
-            <label className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-              <input
-                type="checkbox"
-                checked={interactive}
-                onChange={(e) => setInteractive(e.target.checked)}
-              />
-              Interactive (pause on a clarifying question)
-            </label>
+          <div className="flex items-center justify-end">
             <button
               type="submit"
               disabled={loading}
@@ -463,7 +454,7 @@ function App() {
               {finalState.final_answer && (
                 <>
                   <dt className="text-neutral-500">Final answer</dt>
-                  <dd>{finalState.final_answer}</dd>
+                  <dd className="whitespace-pre-line">{finalState.final_answer}</dd>
                 </>
               )}
             </dl>
