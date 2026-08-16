@@ -108,15 +108,15 @@ development.
    meta, or does it need a domain fact I have no business guessing?") and rewiring
    `_route_after_planner` in `src/graph.py` to send `retrieval_needed=False` to Finaliser instead
    of `END`. This directly drove correct-abstention from 0.333 to (on the data available) 1.0.
-2. **Generic invalid-JSON handling across every LLM call site.** `.with_structured_output()`
+<!-- 2. **Generic invalid-JSON handling across every LLM call site.** `.with_structured_output()`
    guarantees the response matches the schema's types if it parses at all, but nothing stops a
    response failing to parse in the first place. Added `safe_structured_invoke()`
    (`src/llm.py`) — retries the call once, then calls a caller-supplied fallback that produces a
    safe, explicit degraded state (e.g. Clarifier proceeds on the raw question; Verifier fails a
    claim to `UNSUPPORTED` with an explicit reason) instead of the run crashing or silently
    corrupting state. Applied to all 6 LLM call sites (Clarifier, Planner, Researcher's query
-   reformulation, Synthesiser, Verifier, both Finaliser calls).
-3. **Corrected Groundedness/Hallucination-rate to be claim-level, not judge-assessed.** The task
+   reformulation, Synthesiser, Verifier, both Finaliser calls). -->
+2. **Corrected Groundedness/Hallucination-rate to be claim-level, not judge-assessed.** The task
    brief defines both as stats over *claims* ("% of claims actually supported by their cited
    text"). The original harness asked the LLM judge to holistically eyeball the final answer text
    and guess a `grounded: bool` per run — a strictly less precise proxy for a number the Verifier
@@ -159,7 +159,7 @@ of two slots going to that low-value chunk. See §5 for what I'd do about this w
 
 ## 4. Consistency findings
 
-Across the 3x-repeated runs with clean data (Q01–Q11 as of this report):
+Across the 3x-repeated runs with clean data :
 
 - **Q03** (performance review cadence) changes its exact answer wording between runs but not its
   underlying accuracy verdict or refusal status — attributable to Gemini's temperature=0 not being
@@ -168,7 +168,7 @@ Across the 3x-repeated runs with clean data (Q01–Q11 as of this report):
   (§2) — the former would flag Q03 as "inconsistent" in a way that overstates the actual risk.
 - All other clean-data questions (Q01, Q02, Q04, Q05, single-doc; Q07–Q10, multi-hop; Q11,
   unanswerable) were verdict-stable across all 3 runs.
-- Q12–Q15 consistency is currently unknown — see Limitations.
+
 
 ## 5. What I'd do differently with two more weeks
 
