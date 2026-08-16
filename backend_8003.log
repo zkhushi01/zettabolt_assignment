@@ -7,3 +7,5 @@ INFO:     Application startup complete.
 INFO:     127.0.0.1:61452 - "GET /api/topology HTTP/1.1" 200 OK
 INFO:     127.0.0.1:59139 - "GET /api/topology HTTP/1.1" 200 OK
 INFO:     127.0.0.1:59141 - "GET /api/topology HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'src\llm.py'. Reloading...
+ 

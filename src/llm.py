@@ -35,7 +35,7 @@ load_dotenv()
 MODEL_NAME = "gemini-flash-lite-latest"
 
 DEFAULT_TEMPERATURE = 0.0
-
+ 
 
 class LLMConfigError(Exception):
     """Raised when the Gemini API key is missing."""
